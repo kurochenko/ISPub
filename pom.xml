@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.kurochenko</groupId>
-    <artifactId>ISPubMaven</artifactId>
+    <artifactId>net.kurochenko.ISPub</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>ISPubMaven Web App</name>
+    <name>ISPub</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
