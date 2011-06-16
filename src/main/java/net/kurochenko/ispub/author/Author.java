@@ -1,4 +1,4 @@
-package author;
+package net.kurochenko.ispub.author;
 
 /**
  *

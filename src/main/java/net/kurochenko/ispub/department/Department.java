@@ -1,4 +1,4 @@
-package department;
+package net.kurochenko.ispub.department;
 
 /**
  *
