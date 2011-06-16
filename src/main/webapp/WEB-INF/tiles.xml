@@ -13,7 +13,7 @@
     </definition>
  
     <definition name="author" extends="base.definition">
-        <put-attribute name="title" value="Author Manager" />
+        <put-attribute name="title" value="Authors" />
         <put-attribute name="body" value="/WEB-INF/jsp/author.jsp" />
     </definition>
  

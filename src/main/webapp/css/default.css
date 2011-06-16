@@ -1,0 +1,14 @@
+/* 
+    Document   : default
+    Created on : Jun 16, 2011, 11:10:07 AM
+    Author     : Andrej Kuročenko <kurochenko@gmail.com>
+*/
+
+root { display: block; }
+
+a { color: #e6492d; }
+a:visited { color: #96210e; }
+
+div#header { width: 100%; }
+div#mainmenu { width: 100%; }
+div#content {width: 100% }

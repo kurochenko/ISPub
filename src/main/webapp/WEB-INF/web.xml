@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/author</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
