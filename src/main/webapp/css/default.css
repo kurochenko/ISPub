@@ -10,5 +10,9 @@ a { color: #e6492d; }
 a:visited { color: #96210e; }
 
 div#header { width: 100%; }
-div#mainmenu { width: 100%; }
+
+div#mainmenu { width: 100%; border: 1px black solid; overflow: auto;}
+div#mainmenu ul { list-style: none; overflow: hidden;}
+div#mainmenu ul li { padding: 0px 5px 0px 5px; float: left; overflow: hidden;}
+
 div#content {width: 100% }

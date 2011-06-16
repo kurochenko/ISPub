@@ -5,8 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <ul>
-    <li><a href="#">Lorem</a></li>
-    <li><a href="#">Ipsum</a></li>
-    <li><a href="#">Dolar</a></li>
+    <li><a href="${pageContext.request.contextPath}/author">
+            <spring:message code="label.menu.item.authors"/>
+        </a>
+    </li>
 </ul>
