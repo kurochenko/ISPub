@@ -13,7 +13,7 @@
     <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
     
     <context:component-scan
-        base-package="net.kurochenko.ispubmaven.controller" />
+        base-package="net.kurochenko.ispub.controller" />
     
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
