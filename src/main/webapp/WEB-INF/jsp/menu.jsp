@@ -11,4 +11,8 @@
             <spring:message code="label.menu.item.authors"/>
         </a>
     </li>
+    <li><a href="${pageContext.request.contextPath}/department">
+            <spring:message code="label.menu.item.departments"/>
+        </a>
+    </li>
 </ul>

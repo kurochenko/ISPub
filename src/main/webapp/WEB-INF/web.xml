@@ -12,6 +12,10 @@
         <servlet-name>spring</servlet-name>
         <url-pattern>/author</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>spring</servlet-name>
+        <url-pattern>/department</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
