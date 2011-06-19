@@ -13,9 +13,20 @@
         <put-attribute name="title" value="Autoři" />
         <put-attribute name="body" value="/WEB-INF/jsp/author.jsp" />
     </definition>
+    
     <definition name="department" extends="base.definition">
         <put-attribute name="title" value="Oddělení" />
-        <put-attribute name="body" value="/WEB-INF/jsp/department.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/department/list.jsp" />
+    </definition>
+    
+    <definition name="department/add" extends="base.definition">
+        <put-attribute name="title" value="add Oddělení" />
+        <put-attribute name="body" value="/WEB-INF/jsp/department/add.jsp" />
+    </definition>
+    
+    <definition name="department.add" extends="base.definition">
+        <put-attribute name="title" value="add Oddělení" />
+        <put-attribute name="body" value="/WEB-INF/jsp/department/add.jsp" />
     </definition>
  
 </tiles-definitions>
