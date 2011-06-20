@@ -19,14 +19,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     @Transactional
-    public void addDepartment(Department department) {
-        departmentDAO.addDepartment(department);
-    }
-
-    @Override
-    @Transactional
-    public void updateDepartment(Department department) {
-        departmentDAO.updateDepartment(department);
+    public void saveDepartment(Department department) {
+        departmentDAO.saveDepartment(department);
     }
 
     @Override
@@ -39,6 +33,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Transactional
     public void removeDepartment(Integer id) {
         departmentDAO.removeDepartment(id);
+    }
+
+    @Override
+    @Transactional
+    public Department getDepartmentByID(Integer id) {
+        return departmentDAO.getDepartmentByID(id);
     }
     
 }

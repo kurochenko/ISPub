@@ -19,14 +19,9 @@
         <put-attribute name="body" value="/WEB-INF/jsp/department/list.jsp" />
     </definition>
     
-    <definition name="department/add" extends="base.definition">
-        <put-attribute name="title" value="add Oddělení" />
-        <put-attribute name="body" value="/WEB-INF/jsp/department/add.jsp" />
-    </definition>
-    
-    <definition name="department.add" extends="base.definition">
-        <put-attribute name="title" value="add Oddělení" />
-        <put-attribute name="body" value="/WEB-INF/jsp/department/add.jsp" />
+    <definition name="department.save" extends="base.definition">
+        <put-attribute name="title" value="Přidat nové oddělení" />
+        <put-attribute name="body" value="/WEB-INF/jsp/department/save.jsp" />
     </definition>
  
 </tiles-definitions>

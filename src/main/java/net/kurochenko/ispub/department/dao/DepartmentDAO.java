@@ -10,20 +10,12 @@ import net.kurochenko.ispub.department.form.Department;
 public interface DepartmentDAO {
     
     /**
-     * Inserts new department. Departments ID should not be set. ID is set by
-     * add method and indicates successful insertion of department.
+     * Inserts new department. If departments ID is set, then department in 
+     * database is updated. Otherwise new department is created.
      * 
      * @param department 
      */
-    public void addDepartment(Department department);
-    
-    /**
-     * Updates department information. Departments ID should be set. Department 
-     * with same ID is updated.
-     * 
-     * @param department 
-     */
-    public void updateDepartment(Department department);
+    public void saveDepartment(Department department);
     
     /**
      * Returns all departments
@@ -38,4 +30,12 @@ public interface DepartmentDAO {
      * @param id 
      */
     public void removeDepartment(Integer id);
+    
+    /**
+     * Searches and returns department with given ID
+     * 
+     * @param id
+     * @return department from 
+     */
+    public Department getDepartmentByID(Integer id);
 }

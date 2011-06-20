@@ -17,18 +17,13 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     private SessionFactory sessionFactory;
 
     @Override
-    public void addDepartment(Department department) {
-        sessionFactory.getCurrentSession().save(department);
-    }
-
-    @Override
-    public void updateDepartment(Department department) {
-        sessionFactory.getCurrentSession().update(department);
+    public void saveDepartment(Department department) {
+        sessionFactory.getCurrentSession().saveOrUpdate(department);
     }
 
     @Override
     public List<Department> listDepartment() {
-        return sessionFactory.getCurrentSession().createQuery("from Department").list();
+        return sessionFactory.getCurrentSession().createQuery("from " + Department.class.getName()).list();
     }
 
     @Override
@@ -38,6 +33,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         if (null != department) {
             sessionFactory.getCurrentSession().delete(department);
         }
+    }
+
+    @Override
+    public Department getDepartmentByID(Integer id) {
+        return (Department) sessionFactory.getCurrentSession().load(Department.class, id);
     }
     
 }

@@ -5,17 +5,17 @@ import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.department.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * User: hbk
- * Date: 6/18/11
- * Time: 11:35 PM
- */
 @Controller
 public class DepartmentController {
     
@@ -31,21 +31,47 @@ public class DepartmentController {
         return "department";
     }
     
-    @RequestMapping(value = "/department/add", method = RequestMethod.POST)
+    @RequestMapping(value = "**/save", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("department")
     Department department, BindingResult result) {
  
-        departmentService.addDepartment(department);
+        departmentService.saveDepartment(department);
  
         return "redirect:/department";
     }
     
-    @RequestMapping("/department/delete/{departmentId}")
+    @RequestMapping(value = "**/save", method= RequestMethod.GET)
+    public String renderContact(Model model, @ModelAttribute Department department, WebRequest request) {
+ 
+        return "department.save";
+    }
+    
+    @RequestMapping("**/delete/{departmentId}")
     public String deleteContact(@PathVariable("departmentId")
     Integer departmentId) {
  
         departmentService.removeDepartment(departmentId);
  
+        return "redirect:/department";
+    }
+    
+    @RequestMapping(value = "**/update/{departmentId}", method= RequestMethod.GET)
+    public ModelAndView updateContact(@PathVariable("departmentId") Integer departmentId) {
+        
+        return new ModelAndView("department.update", "department", departmentService.getDepartmentByID(departmentId));
+    }
+
+    @RequestMapping(value="**/save/{departmentId}", method = RequestMethod.GET)
+    public String setupForm(@PathVariable("departmentId") Integer departmentId, ModelMap model) {
+        model.addAttribute("department", departmentService.getDepartmentByID(departmentId));
+        
+        return "department.save";
+    }
+
+    @RequestMapping(value="**/save/{departmentId}", method = RequestMethod.POST)
+    public String processSubmit(@ModelAttribute("iddepartment") Department department, BindingResult result, SessionStatus status) {
+        departmentService.saveDepartment(department);
+        status.setComplete();
         return "redirect:/department";
     }
 }
