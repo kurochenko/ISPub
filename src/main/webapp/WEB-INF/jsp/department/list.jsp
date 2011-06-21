@@ -19,12 +19,12 @@
         <td>${department.name} </td>
         <td>
             <a href="department/save/${department.iddepartment}">
-                <spring:message code="label.department.link.update"/>
+                <spring:message code="label.update"/>
             </a>
         </td>
         <td>
             <a href="department/delete/${department.iddepartment}">
-                <spring:message code="label.department.link.delete"/>
+                <spring:message code="label.delete"/>
             </a>
         </td>
     </tr>
@@ -33,7 +33,7 @@
         <td>&nbsp;</td>
         <td colspan="2">
             <a href="department/save">
-                <spring:message code="label.department.link.add"/>
+                <spring:message code="label.add"/>
             </a>
         </td>
     </tr>

@@ -11,7 +11,12 @@
  
     <definition name="author" extends="base.definition">
         <put-attribute name="title" value="Autoři" />
-        <put-attribute name="body" value="/WEB-INF/jsp/author.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/author/list.jsp" />
+    </definition>
+    
+    <definition name="author.save" extends="base.definition">
+        <put-attribute name="title" value="Přidat nového autora" />
+        <put-attribute name="body" value="/WEB-INF/jsp/author/save.jsp" />
     </definition>
     
     <definition name="department" extends="base.definition">

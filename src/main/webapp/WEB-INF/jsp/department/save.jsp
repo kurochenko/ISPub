@@ -24,10 +24,10 @@
         <td colspan="2">
             <c:choose>
                 <c:when test="${empty department.iddepartment}">
-                    <input type="submit" value="<spring:message code="label.department.button.add"/>"/>
+                    <input type="submit" value="<spring:message code="label.add"/>"/>
                 </c:when>
                 <c:otherwise>
-                    <input type="submit" value="<spring:message code="label.department.button.update"/>"/>
+                    <input type="submit" value="<spring:message code="label.update"/>"/>
                 </c:otherwise>
             </c:choose>
         </td>

@@ -17,12 +17,13 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/department")
 public class DepartmentController {
     
     @Autowired
     private DepartmentService departmentService;
     
-    @RequestMapping("/department")
+    @RequestMapping(method = RequestMethod.GET)
     public String listContacts(Map<String, Object> map) {
  
         map.put("department", new Department());
@@ -31,7 +32,7 @@ public class DepartmentController {
         return "department";
     }
     
-    @RequestMapping(value = "**/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/department/save", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("department")
     Department department, BindingResult result) {
  
@@ -40,13 +41,13 @@ public class DepartmentController {
         return "redirect:/department";
     }
     
-    @RequestMapping(value = "**/save", method= RequestMethod.GET)
+    @RequestMapping(value = "/department/save", method= RequestMethod.GET)
     public String renderContact(Model model, @ModelAttribute Department department, WebRequest request) {
  
         return "department.save";
     }
     
-    @RequestMapping("**/delete/{departmentId}")
+    @RequestMapping("/department/delete/{departmentId}")
     public String deleteContact(@PathVariable("departmentId")
     Integer departmentId) {
  
@@ -55,20 +56,20 @@ public class DepartmentController {
         return "redirect:/department";
     }
     
-    @RequestMapping(value = "**/update/{departmentId}", method= RequestMethod.GET)
+    @RequestMapping(value = "/department/update/{departmentId}", method= RequestMethod.GET)
     public ModelAndView updateContact(@PathVariable("departmentId") Integer departmentId) {
         
         return new ModelAndView("department.update", "department", departmentService.getDepartmentByID(departmentId));
     }
 
-    @RequestMapping(value="**/save/{departmentId}", method = RequestMethod.GET)
+    @RequestMapping(value="/department/save/{departmentId}", method = RequestMethod.GET)
     public String setupForm(@PathVariable("departmentId") Integer departmentId, ModelMap model) {
         model.addAttribute("department", departmentService.getDepartmentByID(departmentId));
         
         return "department.save";
     }
 
-    @RequestMapping(value="**/save/{departmentId}", method = RequestMethod.POST)
+    @RequestMapping(value="/department/save/{departmentId}", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("iddepartment") Department department, BindingResult result, SessionStatus status) {
         departmentService.saveDepartment(department);
         status.setComplete();

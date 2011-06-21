@@ -28,8 +28,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void removeDepartment(Integer id) {
-        Department department = (Department) sessionFactory.getCurrentSession().load(
-                Department.class, id);
+        Department department = getDepartmentByID(id);
         if (null != department) {
             sessionFactory.getCurrentSession().delete(department);
         }
