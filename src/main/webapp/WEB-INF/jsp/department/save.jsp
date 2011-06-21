@@ -22,7 +22,14 @@
     </tr>
     <tr>
         <td colspan="2">
-            <input type="submit" value="<spring:message code="label.department.button.add"/>"/>
+            <c:choose>
+                <c:when test="${empty department.iddepartment}">
+                    <input type="submit" value="<spring:message code="label.department.button.add"/>"/>
+                </c:when>
+                <c:otherwise>
+                    <input type="submit" value="<spring:message code="label.department.button.update"/>"/>
+                </c:otherwise>
+            </c:choose>
         </td>
     </tr>
 </table>

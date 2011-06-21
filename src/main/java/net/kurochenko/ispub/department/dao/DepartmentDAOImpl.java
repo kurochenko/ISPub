@@ -37,7 +37,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getDepartmentByID(Integer id) {
-        return (Department) sessionFactory.getCurrentSession().load(Department.class, id);
+        return (Department) sessionFactory.getCurrentSession().get(Department.class, id);
     }
     
 }

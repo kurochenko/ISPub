@@ -18,13 +18,13 @@
     <tr>
         <td>${department.name} </td>
         <td>
-            <a href="department/delete/${department.iddepartment}">
-                <spring:message code="label.department.link.delete"/>
+            <a href="department/save/${department.iddepartment}">
+                <spring:message code="label.department.link.update"/>
             </a>
         </td>
         <td>
-            <a href="department/save/${department.iddepartment}">
-                <spring:message code="label.department.link.update"/>
+            <a href="department/delete/${department.iddepartment}">
+                <spring:message code="label.department.link.delete"/>
             </a>
         </td>
     </tr>
