@@ -1,13 +1,16 @@
 package net.kurochenko.ispub.author.form;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import net.kurochenko.ispub.department.form.Department;
+
+
 
 /**
  *
@@ -34,7 +37,7 @@ public class Author implements Serializable {
     @Column(name = "note")
     private String note;
     
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Department department;
 
     public Department getDepartment() {

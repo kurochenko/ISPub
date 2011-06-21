@@ -20,7 +20,7 @@ public class Department implements Serializable {
     @GeneratedValue
     private Integer iddepartment;
     
-    @Column(name="name")
+    @Column(name="name", unique=true)
     private String name;
 
     public Integer getIddepartment() {

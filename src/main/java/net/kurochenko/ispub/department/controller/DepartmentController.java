@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/department")
@@ -32,7 +31,7 @@ public class DepartmentController {
         return "department";
     }
     
-    @RequestMapping(value = "/department/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("department")
     Department department, BindingResult result) {
  
@@ -41,38 +40,32 @@ public class DepartmentController {
         return "redirect:/department";
     }
     
-    @RequestMapping(value = "/department/save", method= RequestMethod.GET)
+    @RequestMapping(value = "/save", method= RequestMethod.GET)
     public String renderContact(Model model, @ModelAttribute Department department, WebRequest request) {
  
         return "department.save";
     }
-    
-    @RequestMapping("/department/delete/{departmentId}")
-    public String deleteContact(@PathVariable("departmentId")
-    Integer departmentId) {
- 
-        departmentService.removeDepartment(departmentId);
- 
-        return "redirect:/department";
-    }
-    
-    @RequestMapping(value = "/department/update/{departmentId}", method= RequestMethod.GET)
-    public ModelAndView updateContact(@PathVariable("departmentId") Integer departmentId) {
-        
-        return new ModelAndView("department.update", "department", departmentService.getDepartmentByID(departmentId));
-    }
 
-    @RequestMapping(value="/department/save/{departmentId}", method = RequestMethod.GET)
+    @RequestMapping(value="/save/{departmentId}", method = RequestMethod.GET)
     public String setupForm(@PathVariable("departmentId") Integer departmentId, ModelMap model) {
         model.addAttribute("department", departmentService.getDepartmentByID(departmentId));
         
         return "department.save";
     }
 
-    @RequestMapping(value="/department/save/{departmentId}", method = RequestMethod.POST)
+    @RequestMapping(value="/save/{departmentId}", method = RequestMethod.POST)
     public String processSubmit(@ModelAttribute("iddepartment") Department department, BindingResult result, SessionStatus status) {
         departmentService.saveDepartment(department);
         status.setComplete();
+        return "redirect:/department";
+    }
+    
+    @RequestMapping("/delete/{departmentId}")
+    public String deleteContact(@PathVariable("departmentId")
+    Integer departmentId) {
+ 
+        departmentService.removeDepartment(departmentId);
+ 
         return "redirect:/department";
     }
 }

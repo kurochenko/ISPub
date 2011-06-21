@@ -8,8 +8,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:if  test="${!empty departmentList}">
-<table class="data">
+
+<table>
 <tr>
     <th><spring:message code="label.department.name"/></th>
     <th>&nbsp;</th>
@@ -38,5 +38,3 @@
         </td>
     </tr>
 </table>
-</c:if>
-
