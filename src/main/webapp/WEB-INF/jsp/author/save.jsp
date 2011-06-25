@@ -51,7 +51,18 @@
                 <spring:message code="label.author.department"/>
             </form:label>
         </td>
-        <td><form:input path="department.name" /></td>        
+        <td>
+            <form:select path="department.name">
+                <c:choose>
+                    <c:when test="${ empty departmentList}">
+                        <form:option value="" label="Add any department first" disabled="yes"/> 
+                    </c:when>
+                    <c:otherwise>
+                        <form:options items="${departmentList}" itemValue="iddepartment" />
+                    </c:otherwise>
+                </c:choose>
+            </form:select>
+        </td>        
     </tr>
     <tr>
         <td colspan="2">
@@ -67,3 +78,4 @@
     </tr>
 </table>
 </form:form>
+${departmentList}

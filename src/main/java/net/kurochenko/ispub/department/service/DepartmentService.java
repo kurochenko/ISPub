@@ -37,4 +37,12 @@ public interface DepartmentService {
      * @return department from 
      */
     public Department getDepartmentByID(Integer id);
+    
+    /**
+     * Searches and returns department with given name
+     * 
+     * @param name
+     * @return department from 
+     */
+    public Department getByName(String name);
 }

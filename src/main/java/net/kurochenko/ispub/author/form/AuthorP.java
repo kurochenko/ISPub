@@ -7,7 +7,7 @@ import net.kurochenko.ispub.author.dao.AuthorDAO;
  *
  * @author kurochenko
  */
-public class AuthorEditor extends PropertyEditorSupport {
+public class AuthorP extends PropertyEditorSupport {
     private AuthorDAO authorDAO;
 
     public void setDepartmentDAO(AuthorDAO authorDAO) {

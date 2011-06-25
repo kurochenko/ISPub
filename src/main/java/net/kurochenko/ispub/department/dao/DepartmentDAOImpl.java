@@ -2,6 +2,7 @@ package net.kurochenko.ispub.department.dao;
 
 import java.util.List;
 import net.kurochenko.ispub.department.form.Department;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,6 +38,15 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     @Override
     public Department getDepartmentByID(Integer id) {
         return (Department) sessionFactory.getCurrentSession().get(Department.class, id);
+    }
+
+    @Override
+    public Department getByName(String name) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "from " + Department.class.getName() + " where name=?");
+        query.setString(1, name);
+        
+        return (Department) query.uniqueResult();
     }
     
 }

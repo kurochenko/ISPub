@@ -40,5 +40,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     public Department getDepartmentByID(Integer id) {
         return departmentDAO.getDepartmentByID(id);
     }
+
+    @Override
+    public Department getByName(String name) {
+        return departmentDAO.getByName(name);
+    }
     
 }

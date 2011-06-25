@@ -1,25 +1,29 @@
 package net.kurochenko.ispub.department.form;
 
 import java.beans.PropertyEditorSupport;
-import net.kurochenko.ispub.department.dao.DepartmentDAO;
+import net.kurochenko.ispub.department.service.DepartmentService;
 
 /**
  *
  * @author kurochenko
  */
-public class DepartmentEditor extends PropertyEditorSupport {
+public class DepartmentP extends PropertyEditorSupport {
 
-    private DepartmentDAO departmentDAO;
+    private DepartmentService departmentService;
 
-    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
-        this.departmentDAO = departmentDAO;
+    public void setDepartmentService(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
+    
+    public DepartmentP(DepartmentService ds) {
+        this.departmentService = ds;
     }
 
     @Override
     public void setAsText(String str) throws IllegalArgumentException {
         if (str != null && str.length() > 0) {
             try {
-                Department department = this.departmentDAO.getDepartmentByID(Integer.valueOf(str));
+                Department department = this.departmentService.getDepartmentByID(Integer.valueOf(str));
                 super.setValue(department);
             } catch (NumberFormatException ex) {
                 throw new IllegalArgumentException();
