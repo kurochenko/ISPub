@@ -12,31 +12,28 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Andrej Kuročenko <kurochenko@mail.muni.cz>
  */
 @Service
+@Transactional
 public class DepartmentServiceImpl implements DepartmentService {
     
     @Autowired
     private DepartmentDAO departmentDAO;
 
     @Override
-    @Transactional
     public void saveDepartment(Department department) {
         departmentDAO.saveDepartment(department);
     }
 
     @Override
-    @Transactional
     public List<Department> listDepartment() {
         return departmentDAO.listDepartment();
     }
 
     @Override
-    @Transactional
     public void removeDepartment(Integer id) {
         departmentDAO.removeDepartment(id);
     }
 
     @Override
-    @Transactional
     public Department getDepartmentByID(Integer id) {
         return departmentDAO.getDepartmentByID(id);
     }

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -13,6 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="department")
+@OnDelete(action=OnDeleteAction.CASCADE)
 public class Department implements Serializable {
     
     @Id
@@ -20,7 +23,7 @@ public class Department implements Serializable {
     @GeneratedValue
     private Integer iddepartment;
     
-    @Column(name="name", unique=true)
+    @Column(name="name", unique=true,updatable=true)
     private String name;
 
     public Integer getIddepartment() {

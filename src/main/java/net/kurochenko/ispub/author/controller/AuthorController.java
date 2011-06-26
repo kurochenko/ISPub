@@ -60,6 +60,7 @@ public class AuthorController {
     public String renderUpdateForm(@PathVariable("authorId") Integer authorId, ModelMap model) {
         model.addAttribute("author", authorService.getAuthorByID(authorId));
         
+        model.addAttribute("departmentList", departmentService.listDepartment());
         return "author.save";
     }
 

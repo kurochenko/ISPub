@@ -55,10 +55,10 @@
             <form:select path="department.name">
                 <c:choose>
                     <c:when test="${ empty departmentList}">
-                        <form:option value="" label="Add any department first" disabled="yes"/> 
+                        <form:option value="" label="Add any department first" disabled="disabled"/> 
                     </c:when>
                     <c:otherwise>
-                        <form:options items="${departmentList}" itemValue="iddepartment" />
+                        <form:options items="${departmentList}" itemValue="iddepartment" itemLabel="name" />
                     </c:otherwise>
                 </c:choose>
             </form:select>

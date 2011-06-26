@@ -5,12 +5,14 @@ import net.kurochenko.ispub.author.form.Author;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Andrej Kuročenko <kurochenko@gmail.com>
  */
 @Repository
+@Transactional
 public class AuthorDAOImpl implements AuthorDAO {
     
     @Autowired
@@ -41,6 +43,6 @@ public class AuthorDAOImpl implements AuthorDAO {
 
     @Override
     public void updateAuthor(Author author) {
-        sessionFactory.getCurrentSession().merge(author);
+        sessionFactory.getCurrentSession().update(author);
     }
 }
