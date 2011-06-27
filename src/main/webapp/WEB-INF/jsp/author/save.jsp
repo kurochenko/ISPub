@@ -58,7 +58,7 @@
                         <form:option value="" label="Add any department first" disabled="disabled"/> 
                     </c:when>
                     <c:otherwise>
-                        <form:options items="${departmentList}" itemValue="iddepartment" itemLabel="name" />
+                        <form:options items="${departmentList}" itemValue="name" itemLabel="name" />
                     </c:otherwise>
                 </c:choose>
             </form:select>

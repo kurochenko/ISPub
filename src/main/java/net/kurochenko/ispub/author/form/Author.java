@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -38,7 +37,7 @@ public class Author implements Serializable {
     @Column(name = "note")
     private String note;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.EAGER, targetEntity=Department.class)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Department department;
 
     public Department getDepartment() {
