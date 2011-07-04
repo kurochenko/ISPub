@@ -18,7 +18,7 @@
                 <spring:message code="label.department.name"/>
             </form:label>
         </td>
-        <td><form:input path="name" /></td>
+        <td><form:input path="name" /><form:errors path="name" /></td>
     </tr>
     <tr>
         <td colspan="2">

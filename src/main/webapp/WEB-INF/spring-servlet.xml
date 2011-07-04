@@ -18,8 +18,9 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
+    <context:annotation-config />
+    <context:component-scan base-package="net.kurochenko.ispub" />
 
-    
     
 <!--  L10n, i18n  -->
     
@@ -71,20 +72,19 @@
             <props>
                 <prop key="hibernate.dialect">${jdbc.dialect}</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
             </props>
         </property>
     </bean>
+
+    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />-->
  
     <tx:annotation-driven />
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    
-    
-    <context:annotation-config />
-    <context:component-scan base-package="net.kurochenko.ispub" />
+
     
     <mvc:annotation-driven conversion-service="myFormattingFactory" />
     <bean id="myFormattingFactory" 

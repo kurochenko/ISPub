@@ -34,7 +34,7 @@ public class DepartmentController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("department")
     Department department, BindingResult result) {
- 
+
         departmentService.saveDepartment(department);
  
         return "redirect:/department";

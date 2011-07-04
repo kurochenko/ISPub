@@ -113,11 +113,6 @@
         </dependency>
         <dependency>
             <groupId>hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.0.5</version>
-        </dependency>
-        <dependency>
-            <groupId>hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>3.4.0.GA</version>
         </dependency>
@@ -154,17 +149,17 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate</artifactId>
-            <version>3.2.5.ga</version>
+            <version>3.2.6.ga</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>ejb3-persistence</artifactId>
-            <version>1.0.1.GA</version>
+            <version>1.0.2.GA</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>3.3.2.GA</version>
+            <version>3.6.5.Final</version>
         </dependency>
         <dependency>
             <groupId>javax.sql</groupId>

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Department implements Serializable {
     private Integer iddepartment;
     
     @Column(name="name", unique=true)
+    @Size(min = 1,max = 50)
     private String name;
 
     public Integer getIddepartment() {

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import net.kurochenko.ispub.department.form.Department;
-
+import net.kurochenko.ispub.department.form.DepartmentFormat;
 
 
 /**
@@ -37,7 +37,8 @@ public class Author implements Serializable {
     @Column(name = "note")
     private String note;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @DepartmentFormat
+    @ManyToOne(cascade = CascadeType.ALL,optional = true)
     private Department department;
 
     public Department getDepartment() {

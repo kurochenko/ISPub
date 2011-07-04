@@ -2,6 +2,7 @@ package net.kurochenko.ispub.department.service;
 
 import java.util.List;
 import net.kurochenko.ispub.department.form.Department;
+import org.springframework.stereotype.Service;
 
 /**
  *

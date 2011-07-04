@@ -5,11 +5,14 @@ import java.util.Locale;
 import net.kurochenko.ispub.department.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Component;
+
 
 /**
  *
  * @author kurochenko
  */
+@Component
 public class DepartmentFormatter implements Formatter<Department> {
 
     @Autowired
@@ -22,7 +25,6 @@ public class DepartmentFormatter implements Formatter<Department> {
 
     @Override
     public Department parse(String string, Locale locale) throws ParseException {
-        return departmentService.getDepartmentByID(Integer.valueOf(string));
+        return departmentService.getByName(string);
     }
-    
 }
