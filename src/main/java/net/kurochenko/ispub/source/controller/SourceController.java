@@ -1,5 +1,6 @@
 package net.kurochenko.ispub.source.controller;
 
+import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.source.form.Source;
 import net.kurochenko.ispub.source.service.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.Map;
+
 /**
  * Created by IntelliJ IDEA.
  * User: kurochenko
@@ -22,11 +25,19 @@ import org.springframework.web.context.request.WebRequest;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@RequestMapping("/source")
+@RequestMapping(value = "/source")
 public class SourceController {
     @Autowired
     SourceService sourceService;
 
+    @RequestMapping(method = RequestMethod.GET)
+    public String list(Map<String, Object> map) {
+
+        map.put("source", new Source());
+        map.put("sourceList", sourceService.list());
+
+        return "source";
+    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("source") Source source, BindingResult result) {
