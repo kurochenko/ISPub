@@ -28,11 +28,6 @@ public class AuthorController {
     @Autowired
     private DepartmentService departmentService;
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.initDirectFieldAccess();
-    }
-
     @RequestMapping(method = RequestMethod.GET)
     public String listContacts(Map<String, Object> map) {
  
