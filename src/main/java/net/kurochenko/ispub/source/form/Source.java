@@ -22,13 +22,14 @@ public class Source implements Serializable {
     @GeneratedValue
     Integer sourceId;
 
-    @Column(name = "name")
+    @Column(name = "name",unique = true)
     String name;
 
     @ManyToMany(
             targetEntity = Author.class,
             mappedBy = "sources",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+            fetch = FetchType.EAGER
     )
     Set<Author> authors;
 
@@ -80,9 +81,6 @@ public class Source implements Serializable {
 
     @Override
     public String toString() {
-        return "Source{" +
-                "sourceId=" + sourceId +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 }

@@ -7,6 +7,7 @@ import javax.persistence.*;
 import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.department.form.DepartmentFormat;
 import net.kurochenko.ispub.source.form.Source;
+import net.kurochenko.ispub.source.form.SourceFormat;
 
 
 /**
@@ -40,7 +41,8 @@ public class Author implements Serializable {
 
     @ManyToMany(
             targetEntity = Source.class,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE   },
+            fetch = FetchType.EAGER
     )
     @JoinTable(
             name="author_source",
