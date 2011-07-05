@@ -4,6 +4,7 @@ import java.util.Map;
 import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.author.service.AuthorService;
 import net.kurochenko.ispub.department.service.DepartmentService;
+import net.kurochenko.ispub.source.service.SourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,9 @@ public class AuthorController {
     @Autowired
     private DepartmentService departmentService;
 
+    @Autowired
+    private SourceService sourceService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String listContacts(Map<String, Object> map) {
  
@@ -50,6 +54,7 @@ public class AuthorController {
     public String renderContact(Model model, @ModelAttribute Author author, WebRequest request) {
  
         model.addAttribute("departmentList", departmentService.listDepartment());
+        model.addAttribute("sourceList", sourceService.list());
         
         return "author.save";
     }
@@ -59,6 +64,7 @@ public class AuthorController {
         model.addAttribute("author", authorService.getAuthorByID(authorId));
         
         model.addAttribute("departmentList", departmentService.listDepartment());
+        model.addAttribute("sourceList", sourceService.list());
         return "author.save";
     }
 
