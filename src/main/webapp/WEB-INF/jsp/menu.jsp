@@ -15,4 +15,8 @@
             <spring:message code="label.menu.item.departments"/>
         </a>
     </li>
+    <li><a href="${pageContext.request.contextPath}/source">
+            <spring:message code="label.menu.item.sources"/>
+        </a>
+    </li>
 </ul>

@@ -28,5 +28,15 @@
         <put-attribute name="title" value="Přidat nové oddělení" />
         <put-attribute name="body" value="/WEB-INF/jsp/department/save.jsp" />
     </definition>
+
+    <definition name="source" extends="base.definition">
+        <put-attribute name="title" value="Zdroje" />
+        <put-attribute name="body" value="/WEB-INF/jsp/source/list.jsp" />
+    </definition>
+
+    <definition name="source.save" extends="base.definition">
+        <put-attribute name="title" value="Přidat nový zdroj" />
+        <put-attribute name="body" value="/WEB-INF/jsp/source/save.jsp" />
+    </definition>
  
 </tiles-definitions>
