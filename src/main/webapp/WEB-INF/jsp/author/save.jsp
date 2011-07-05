@@ -53,17 +53,20 @@
         </td>
         <td>
             <form:select path="department">
-                <c:choose>
-                    <c:when test="${ empty departmentList}">
-                        <form:option value="" label="Add any department first" disabled="disabled"/> 
-                    </c:when>
-                    <c:otherwise>
-                        <%--<form:option value="" label="---" />--%>
-                        <form:options items="${departmentList}" itemValue="name" itemLabel="name" />
-                    </c:otherwise>
-                </c:choose>
+                <form:option value=""   />
+                <form:options items="${departmentList}" itemValue="name" itemLabel="name" />
             </form:select>
         </td>        
+    </tr>
+    <tr>
+        <td>
+            <form:label path="sources">
+                <spring:message code="label.author.source"/>
+            </form:label>
+        </td>
+        <td>
+            <form:select path="sources" items="${sourceList}" multiple="true" />
+        </td>
     </tr>
     <tr>
         <td colspan="2">
@@ -79,4 +82,3 @@
     </tr>
 </table>
 </form:form>
-${departmentList}

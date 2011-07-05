@@ -16,6 +16,7 @@
     <th><spring:message code="label.author.meid"/></th>
     <th><spring:message code="label.author.note"/></th>
     <th><spring:message code="label.author.department"/></th>
+    <th><spring:message code="label.author.source"/></th>
     <th>&nbsp;</th>
     <th>&nbsp;</th>
 </tr>
@@ -27,6 +28,11 @@
         <td>${author.meId} </td>
         <td>${author.note} </td>
         <td>${author.department.name} </td>
+        <td>
+            <c:forEach items="${author.sources}" var="source">
+                ${$source.name}
+            </c:forEach>
+        </td>
         <td>
             <a href="author/save/${author.idAuthor}">
                 <spring:message code="label.update"/>
@@ -42,7 +48,7 @@
 </c:if>
     <tr>
         <td>&nbsp;</td>
-        <td colspan="2">
+        <td colspan="3">
             <a href="author/save">
                 <spring:message code="label.add"/>
             </a>
