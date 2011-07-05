@@ -14,8 +14,7 @@ import org.springframework.stereotype.Component;
  * @author kurochenko
  */
 @Component
-public final class DepartmentAnnotationFormatterFactory implements 
-        AnnotationFormatterFactory<DepartmentFormat> {
+public final class DepartmentAnnotationFormatterFactory implements AnnotationFormatterFactory<DepartmentFormat> {
 
     @Autowired
     DepartmentFormatter departmentFormatter;
