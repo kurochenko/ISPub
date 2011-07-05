@@ -1,15 +1,12 @@
 package net.kurochenko.ispub.author.form;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import java.util.Set;
+import javax.persistence.*;
+
 import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.department.form.DepartmentFormat;
+import net.kurochenko.ispub.source.form.Source;
 
 
 /**
@@ -40,6 +37,17 @@ public class Author implements Serializable {
     @DepartmentFormat
     @ManyToOne(cascade = CascadeType.ALL,optional = true)
     private Department department;
+
+    @ManyToMany(
+            targetEntity = Source.class,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    )
+    @JoinTable(
+            name="author_source",
+            joinColumns = @JoinColumn(name = "authorId"),
+            inverseJoinColumns = @JoinColumn(name = "sourceId")
+    )
+    private Set<Source> sources;
 
     public Department getDepartment() {
         return department;
@@ -89,46 +97,42 @@ public class Author implements Serializable {
         this.surname = surname;
     }
 
+    public Set<Source> getSources() {
+        return sources;
+    }
+
+    public void setSources(Set<Source> sources) {
+        this.sources = sources;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Author other = (Author) obj;
-        if (this.idAuthor != other.idAuthor && (this.idAuthor == null || !this.idAuthor.equals(other.idAuthor))) {
-            return false;
-        }
-        if ((this.meId == null) ? (other.meId != null) : !this.meId.equals(other.meId)) {
-            return false;
-        }
-        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
-            return false;
-        }
-        if ((this.surname == null) ? (other.surname != null) : !this.surname.equals(other.surname)) {
-            return false;
-        }
-        if ((this.note == null) ? (other.note != null) : !this.note.equals(other.note)) {
-            return false;
-        }
-        if (this.department != other.department && (this.department == null || !this.department.equals(other.department))) {
-            return false;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        if (department != null ? !department.equals(author.department) : author.department != null) return false;
+        if (idAuthor != null ? !idAuthor.equals(author.idAuthor) : author.idAuthor != null) return false;
+        if (meId != null ? !meId.equals(author.meId) : author.meId != null) return false;
+        if (name != null ? !name.equals(author.name) : author.name != null) return false;
+        if (note != null ? !note.equals(author.note) : author.note != null) return false;
+        if (sources != null ? !sources.equals(author.sources) : author.sources != null) return false;
+        if (surname != null ? !surname.equals(author.surname) : author.surname != null) return false;
+
         return true;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + (this.idAuthor != null ? this.idAuthor.hashCode() : 0);
-        hash = 41 * hash + (this.meId != null ? this.meId.hashCode() : 0);
-        hash = 41 * hash + (this.name != null ? this.name.hashCode() : 0);
-        hash = 41 * hash + (this.surname != null ? this.surname.hashCode() : 0);
-        hash = 41 * hash + (this.note != null ? this.note.hashCode() : 0);
-        hash = 41 * hash + (this.department != null ? this.department.hashCode() : 0);
-        return hash;
+        int result = idAuthor != null ? idAuthor.hashCode() : 0;
+        result = 31 * result + (meId != null ? meId.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
+        result = 31 * result + (department != null ? department.hashCode() : 0);
+        result = 31 * result + (sources != null ? sources.hashCode() : 0);
+        return result;
     }
 
     @Override
