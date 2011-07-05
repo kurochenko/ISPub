@@ -1,6 +1,8 @@
 package net.kurochenko.ispub.source.dao;
 
+import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.source.form.Source;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -38,6 +40,15 @@ public class SourceDAOImpl implements SourceDAO {
     @Override
     public Source getByID(Integer id) {
         return (Source) sessionFactory.getCurrentSession().get(Source.class, id);
+    }
+
+    @Override
+    public Source getByName(String name) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "from " + Source.class.getName() + " where name=?");
+        query.setString(0, name);
+
+        return (Source) query.uniqueResult();
     }
 
     @Override

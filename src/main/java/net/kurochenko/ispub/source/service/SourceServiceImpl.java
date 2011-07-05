@@ -39,6 +39,11 @@ public class SourceServiceImpl implements SourceService {
     }
 
     @Override
+    public Source getByName(String name) {
+        return sourceDAO.getByName(name);
+    }
+
+    @Override
     public List<Source> list() {
         return sourceDAO.list();
     }

@@ -19,5 +19,7 @@ public interface SourceService {
 
     public Source getByID(Integer id);
 
+    public Source getByName(String name);
+
     public List<Source> list();
 }
