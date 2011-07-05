@@ -86,9 +86,8 @@
     </bean>
 
     
-    <mvc:annotation-driven conversion-service="myFormattingFactory" />
-    <bean id="myFormattingFactory" 
-       class="net.kurochenko.ispub.FormattingFactory" />
+    <mvc:annotation-driven conversion-service="formattingFactory" />
+
           
     <bean id="viewResolver"
     class="org.springframework.web.servlet.view.UrlBasedViewResolver">

@@ -44,10 +44,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public Department getByName(String name) {
+
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from " + Department.class.getName() + " where name=?");
-        query.setString(1, name);
-        
+        query.setString(0, name);
+
         return (Department) query.uniqueResult();
     }
     

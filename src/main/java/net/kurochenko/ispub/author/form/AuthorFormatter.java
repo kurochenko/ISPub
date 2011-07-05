@@ -5,12 +5,14 @@ import java.util.Locale;
 import net.kurochenko.ispub.author.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
+import org.springframework.stereotype.Component;
 
 
 /**
  *
  * @author kurochenko
  */
+@Component
 public class AuthorFormatter implements Formatter<Author> {
 
     @Autowired
