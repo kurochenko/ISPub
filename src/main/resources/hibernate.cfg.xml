@@ -7,6 +7,7 @@
     <session-factory>
         <mapping class="net.kurochenko.ispub.department.form.Department" />
         <mapping class="net.kurochenko.ispub.author.form.Author" />
+        <mapping class="net.kurochenko.ispub.source.form.Source" />
     </session-factory>
  
 </hibernate-configuration>
