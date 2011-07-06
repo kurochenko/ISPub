@@ -1,7 +1,6 @@
 package net.kurochenko.ispub.department.form;
 
 import net.kurochenko.ispub.author.form.Author;
-import org.hibernate.annotations.*;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -9,7 +8,10 @@ import javax.persistence.*;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -25,7 +27,9 @@ public class Department implements Serializable {
     private Integer iddepartment;
     
     @Column(name="name", unique=true)
-    @Size(min = 1,max = 50)
+    @NotNull
+    @NotBlank
+    @Max(255)
     private String name;
 
     @OneToMany(

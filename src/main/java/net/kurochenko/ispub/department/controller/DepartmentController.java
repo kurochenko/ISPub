@@ -1,6 +1,7 @@
 package net.kurochenko.ispub.department.controller;
 
 import java.util.Map;
+import javax.validation.Valid;
 import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.department.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,12 @@ public class DepartmentController {
     }
     
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String addContact(@ModelAttribute("department")
-    Department department, BindingResult result) {
+    public String addContact(@ModelAttribute("department") @Valid Department department, BindingResult result) {
 
+        if (result.hasErrors()) {
+            return "department.save";
+        }
+        
         departmentService.saveDepartment(department);
  
         return "redirect:/department";
@@ -54,7 +58,12 @@ public class DepartmentController {
     }
 
     @RequestMapping(value="/save/{departmentId}", method = RequestMethod.POST)
-    public String processSubmit(@ModelAttribute("iddepartment") Department department, BindingResult result, SessionStatus status) {
+    public String processSubmit(@ModelAttribute("iddepartment") @Valid Department department, BindingResult result, SessionStatus status) {
+        
+        if (result.hasErrors()) {
+            return "department.save";
+        }
+        
         departmentService.saveDepartment(department);
         status.setComplete();
         return "redirect:/department";
