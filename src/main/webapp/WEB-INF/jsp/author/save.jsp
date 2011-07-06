@@ -56,7 +56,7 @@
                 <form:option value=""   />
                 <form:options items="${departmentList}" itemValue="name" itemLabel="name" />
             </form:select>
-        </td>        
+        </td>
     </tr>
     <tr>
         <td>

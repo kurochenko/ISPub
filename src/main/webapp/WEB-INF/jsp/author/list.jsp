@@ -29,8 +29,8 @@
         <td>${author.note} </td>
         <td>${author.department.name} </td>
         <td>
-            <c:forEach items="${author.sources}" var="source">
-                ${$source.name}
+            <c:forEach items="${author.sources}" var="src">
+                ${src}<br />
             </c:forEach>
         </td>
         <td>

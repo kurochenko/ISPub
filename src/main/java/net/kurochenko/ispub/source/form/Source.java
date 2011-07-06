@@ -25,12 +25,7 @@ public class Source implements Serializable {
     @Column(name = "name",unique = true)
     String name;
 
-    @ManyToMany(
-            targetEntity = Author.class,
-            mappedBy = "sources",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-            fetch = FetchType.EAGER
-    )
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "sources")
     Set<Author> authors;
 
     public Integer getSourceId() {
@@ -64,7 +59,6 @@ public class Source implements Serializable {
 
         Source source = (Source) o;
 
-        if (authors != null ? !authors.equals(source.authors) : source.authors != null) return false;
         if (name != null ? !name.equals(source.name) : source.name != null) return false;
         if (sourceId != null ? !sourceId.equals(source.sourceId) : source.sourceId != null) return false;
 
@@ -75,7 +69,6 @@ public class Source implements Serializable {
     public int hashCode() {
         int result = sourceId != null ? sourceId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (authors != null ? authors.hashCode() : 0);
         return result;
     }
 

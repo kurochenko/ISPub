@@ -37,19 +37,16 @@ public class Author implements Serializable {
     private String note;
 
     @DepartmentFormat
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinColumn(name = "iddepartment", nullable = true)
     private Department department;
 
-    @ManyToMany(
-            targetEntity = Source.class,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE   },
-            fetch = FetchType.EAGER
-    )
-    @JoinTable(
-            name="author_source",
-            joinColumns = @JoinColumn(name = "authorId"),
-            inverseJoinColumns = @JoinColumn(name = "sourceId")
+    @SourceFormat
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(
+            name = "author_source",
+            joinColumns = {@JoinColumn(name = "author") },
+			inverseJoinColumns = { @JoinColumn(name = "source") }
     )
     private Set<Source> sources;
 
@@ -116,12 +113,10 @@ public class Author implements Serializable {
 
         Author author = (Author) o;
 
-        if (department != null ? !department.equals(author.department) : author.department != null) return false;
         if (idAuthor != null ? !idAuthor.equals(author.idAuthor) : author.idAuthor != null) return false;
         if (meId != null ? !meId.equals(author.meId) : author.meId != null) return false;
         if (name != null ? !name.equals(author.name) : author.name != null) return false;
         if (note != null ? !note.equals(author.note) : author.note != null) return false;
-        if (sources != null ? !sources.equals(author.sources) : author.sources != null) return false;
         if (surname != null ? !surname.equals(author.surname) : author.surname != null) return false;
 
         return true;
@@ -134,8 +129,6 @@ public class Author implements Serializable {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (note != null ? note.hashCode() : 0);
-        result = 31 * result + (department != null ? department.hashCode() : 0);
-        result = 31 * result + (sources != null ? sources.hashCode() : 0);
         return result;
     }
 
