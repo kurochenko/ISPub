@@ -39,21 +39,13 @@
     </tr>
     <tr>
         <td>
-            <form:label path="note">
-                <spring:message code="label.author.note"/>
-            </form:label>
-        </td>
-        <td><form:input path="note" /></td>
-    </tr>
-    <tr>
-        <td>
             <form:label path="department">
                 <spring:message code="label.author.department"/>
             </form:label>
         </td>
         <td>
             <form:select path="department">
-                <form:option value=""   />
+                <form:option value="" label="---" />
                 <form:options items="${departmentList}" itemValue="name" itemLabel="name" />
             </form:select>
         </td>
@@ -67,6 +59,14 @@
         <td>
             <form:select path="sources" items="${sourceList}" multiple="true" />
         </td>
+    </tr>
+    <tr>
+        <td>
+            <form:label path="note">
+                <spring:message code="label.author.note"/>
+            </form:label>
+        </td>
+        <td><form:textarea path="note" cols="64" rows="12" /></td>
     </tr>
     <tr>
         <td colspan="2">

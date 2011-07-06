@@ -9,48 +9,61 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<table>
+<table id="author">
 <tr>
     <th><spring:message code="label.author.name"/></th>
     <th><spring:message code="label.author.surname"/></th>
-    <th><spring:message code="label.author.meid"/></th>
-    <th><spring:message code="label.author.note"/></th>
     <th><spring:message code="label.author.department"/></th>
+    <th><spring:message code="label.author.meid"/></th>
     <th><spring:message code="label.author.source"/></th>
+    <th><spring:message code="label.author.note"/></th>
     <th>&nbsp;</th>
     <th>&nbsp;</th>
 </tr>
 <c:if test="${ !empty authorList}">
-<c:forEach items="${authorList}" var="author">
-    <tr>
-        <td>${author.name} </td>
-        <td>${author.surname} </td>
-        <td>${author.meId} </td>
-        <td>${author.note} </td>
-        <td>${author.department.name} </td>
-        <td>
-            <c:forEach items="${author.sources}" var="src">
-                ${src}<br />
-            </c:forEach>
-        </td>
-        <td>
-            <a href="author/save/${author.idAuthor}">
-                <spring:message code="label.update"/>
-            </a>
-        </td>
-        <td>
-            <a href="author/delete/${author.idAuthor}">
-                <spring:message code="label.delete"/>
-            </a>
-        </td>
-    </tr>
-</c:forEach>
+
+    <c:set var="parity" value="0" />
+
+    <c:forEach items="${authorList}" var="author">
+    <c:choose>
+        <c:when test="${(parity % 2) == 0}">
+            <c:set var="rowClass" value="even" />
+        </c:when>
+        <c:otherwise>
+            <c:set var="rowClass" value="odd" />
+        </c:otherwise>
+    </c:choose>
+    <c:set var="parity" value="${parity + 1}" />
+        <tr class="${rowClass}">
+            <td>${author.name} </td>
+            <td>${author.surname} </td>
+            <td>${author.department.name} </td>
+            <td>${author.meId} </td>
+            <td>
+                <c:forEach items="${author.sources}" var="src">
+                    ${src}<br />
+                </c:forEach>
+            </td>
+            <td>${author.note} </td>
+            <td class='action'>
+                <a href="author/save/${author.idAuthor}" class="update">
+                    <img src='${imgPath}/system/blank.png' alt='<spring:message code="label.update"/>' title='<spring:message code="label.update"/>' class='update'/>
+                </a>
+            </td>
+            <td class='action'>
+                <a href="author/delete/${author.idAuthor}" class="remove">
+                    <img src='${imgPath}/system/blank.png' alt='<spring:message code="label.delete"/>' title='<spring:message code="label.delete"/>' class='remove'/>
+                </a>
+            </td>
+        </tr>
+    </c:forEach>
 </c:if>
     <tr>
-        <td>&nbsp;</td>
-        <td colspan="3">
-            <a href="author/save">
-                <spring:message code="label.add"/>
+        <td colspan="6">&nbsp;</td>
+        <td colspan="2" class="action">
+            <a href="author/save" class="add">
+                <img src='${imgPath}/system/blank.png' alt='<spring:message code="label.add"/>' title='<spring:message code="label.add"/>' class='add'/>
+
             </a>
         </td>
     </tr>

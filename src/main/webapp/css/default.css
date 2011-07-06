@@ -4,15 +4,52 @@
     Author     : Andrej Kuročenko <kurochenko@gmail.com>
 */
 
-root { display: block; }
+body { background-color: #fcf2f2; }
 
-a { color: #e6492d; }
-a:visited { color: #96210e; }
+h1 {
+    background-color: #3b3b3b;
+    color: #eeeeee;
+    padding: 5px;
+    margin: 0;
+}
 
+a {color: #cc3334;}
+a:hover { background-color: #cc3334; color: #fcf2f2;}
+
+img.remove {background-image: url(/ispub/images/system/delete_off.png); background-repeat: no-repeat; border: none;}
+a:hover img.remove {background-image: url(/ispub/images/system/delete_on.png);background-color: transparent;background-repeat: no-repeat; border: none;}
+a.remove:hover {background-color: transparent;}
+
+img.update {background-image: url(/ispub/images/system/edit_off.png); background-repeat: no-repeat; border: none;}
+a:hover img.update {background-image: url(/ispub/images/system/edit_on.png);background-color: transparent;background-repeat: no-repeat; border: none;}
+a.update:hover {background-color: transparent;}
+
+img.add {background-image: url(/ispub/images/system/add_off.png); background-repeat: no-repeat; border: none;}
+a:hover img.add {background-image: url(/ispub/images/system/add_on.png);background-color: transparent;background-repeat: no-repeat; border: none;}
+a.add:hover {background-color: transparent;}
+
+img.error {background-image: url(/ispub/images/system/error.png); background-repeat: no-repeat; border: none;}
+p.error {color:red; font-size: 0.8em;}
 div#header { width: 100%; }
 
 div#mainmenu { width: 100%; border: 1px black solid; overflow: auto;}
 div#mainmenu ul { list-style: none; overflow: hidden;}
 div#mainmenu ul li { padding: 0px 5px 0px 5px; float: left; overflow: hidden;}
 
-div#content {width: 100% }
+div#content {width: 100%; text-align: center; margin-top: 20px;}
+
+div#content table { border-collapse: collapse; margin-left: auto; margin-right: auto; text-align: left;}
+div#content table tr.odd { background-color: #ffffcc; }
+div#content table th { border: 1px solid #999999; background-color: #cccccc; color: #666666; text-align: center;}
+div#content table td { border: 1px solid #999999; padding-left: 10px;}
+div#content table td.top, div#content table th.top { vertical-align: top;}
+div#content table.noBorder th, div#content table.noBorder td { border: none;}
+div#content table td.action { text-align: center; padding-left: 0px;}
+div#content table td.error, div#content table th.error { color: red; }
+div#content table#department { width: 500px; }
+div#content table#author { width: 98% }
+
+
+
+div#content table#remove td.submitInputLeft {text-align: right; width: 50%; padding-right: 15px;}
+div#content table#remove td.submitInputRight {text-align: left; width: 50%; padding-left: 15px;}

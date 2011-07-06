@@ -11,17 +11,15 @@
 <form:form method="post" action="${pageContext.request.contextPath}/department/save" modelAttribute="department">
 <form:hidden path="iddepartment" />
  
-    <table>
+    <table class="noBorder">
     <tr>
-        <td>
+        <th>
             <form:label path="name">
                 <spring:message code="label.department.name"/>
             </form:label>
-        </td>
+        </th>
         <td><form:input path="name" /><form:errors path="name" /></td>
-    </tr>
-    <tr>
-        <td colspan="2">
+        <td>
             <c:choose>
                 <c:when test="${empty department.iddepartment}">
                     <input type="submit" value="<spring:message code="label.add"/>"/>
