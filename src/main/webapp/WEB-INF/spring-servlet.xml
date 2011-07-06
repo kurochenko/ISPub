@@ -13,6 +13,9 @@
     <context:annotation-config />
     <context:component-scan base-package="net.kurochenko.ispub" />
 
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+
     
 <!--  L10n, i18n  -->
     
