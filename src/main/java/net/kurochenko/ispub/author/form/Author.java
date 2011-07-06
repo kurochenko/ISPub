@@ -36,7 +36,8 @@ public class Author implements Serializable {
     private String note;
 
     @DepartmentFormat
-    @ManyToOne(cascade = CascadeType.ALL,optional = true)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},optional = true)
+    @JoinColumn(name = "department", nullable = true)
     private Department department;
 
     @ManyToMany(
