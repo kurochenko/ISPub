@@ -1,6 +1,8 @@
 package net.kurochenko.ispub.department.dao;
 
 import java.util.List;
+
+import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.department.form.Department;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -31,6 +33,12 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
     @Override
     public void removeDepartment(Integer id) {
+
+        Query query = sessionFactory.getCurrentSession().createQuery("update " + Author.class.getName()
+                + " set department = null where department = ?");
+        query.setInteger(0, id);
+        query.executeUpdate();
+
         Department department = getDepartmentByID(id);
         if (null != department) {
             sessionFactory.getCurrentSession().delete(department);

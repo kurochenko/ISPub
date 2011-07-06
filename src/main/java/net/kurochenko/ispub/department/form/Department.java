@@ -1,10 +1,14 @@
 package net.kurochenko.ispub.department.form;
 
 import net.kurochenko.ispub.author.form.Author;
+import org.hibernate.annotations.*;
 
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
@@ -24,7 +28,11 @@ public class Department implements Serializable {
     @Size(min = 1,max = 50)
     private String name;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
+    @OneToMany(
+            mappedBy = "department",
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},
+            fetch = FetchType.EAGER
+    )
     private Set<Author> authors;
 
     public Integer getIddepartment() {

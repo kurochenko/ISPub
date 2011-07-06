@@ -8,6 +8,7 @@ import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.department.form.DepartmentFormat;
 import net.kurochenko.ispub.source.form.Source;
 import net.kurochenko.ispub.source.form.SourceFormat;
+import org.hibernate.annotations.Cascade;
 
 
 /**
@@ -36,8 +37,8 @@ public class Author implements Serializable {
     private String note;
 
     @DepartmentFormat
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE},optional = true)
-    @JoinColumn(name = "department", nullable = true)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "iddepartment", nullable = true)
     private Department department;
 
     @ManyToMany(
