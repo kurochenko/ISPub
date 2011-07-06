@@ -27,6 +27,10 @@ public class AuthorDAOImpl implements AuthorDAO {
     public void removeAuthor(Integer idAuthor) {
         Author author = getAuthorByID(idAuthor);
         if (null != author) {
+
+            author.getSources().clear();
+
+
             sessionFactory.getCurrentSession().delete(author);
         }
     }

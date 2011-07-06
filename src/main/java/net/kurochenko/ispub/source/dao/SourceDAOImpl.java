@@ -1,5 +1,6 @@
 package net.kurochenko.ispub.source.dao;
 
+import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.source.form.Source;
 import org.hibernate.Query;
@@ -33,6 +34,9 @@ public class SourceDAOImpl implements SourceDAO {
     public void removeSource(Integer id) {
         Source source = getByID(id);
         if (source != null) {
+            for (Author author : source.getAuthors()) {
+                author.getSources().clear();
+            }
             sessionFactory.getCurrentSession().delete(source);
         }
     }
