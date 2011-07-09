@@ -13,10 +13,9 @@ import java.util.List;
  * Date: 7/9/11
  * Time: 8:12 PM
  */
-public class AuthorParserCSV implements AuthorParser {
+public class AuthorParserCSV {
 
-    @Override
-    public Collection<Author> parse(InputStream fileIS) throws IOException {
+    public static Collection<Author> parse(InputStream fileIS) throws IOException {
         if (fileIS == null) {
             throw new IllegalArgumentException("Input Stream is null");
         }
