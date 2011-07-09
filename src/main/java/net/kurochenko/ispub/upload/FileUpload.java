@@ -9,7 +9,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
  */
 public class FileUpload {
     private String name;
-    private CommonsMultipartFile fileData;
+    private CommonsMultipartFile csvFile;
 
     public String getName() {
         return name;
@@ -19,11 +19,11 @@ public class FileUpload {
         this.name = name;
     }
 
-    public CommonsMultipartFile getFileData() {
-        return fileData;
+    public CommonsMultipartFile getCsvFile() {
+        return csvFile;
     }
 
-    public void setFileData(CommonsMultipartFile fileData) {
-        this.fileData = fileData;
+    public void setCsvFile(CommonsMultipartFile csvFile) {
+        this.csvFile = csvFile;
     }
 }
