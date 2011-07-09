@@ -5,6 +5,7 @@ import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.author.service.AuthorService;
 import net.kurochenko.ispub.department.service.DepartmentService;
 import net.kurochenko.ispub.source.service.SourceService;
+import net.kurochenko.ispub.upload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,6 +82,24 @@ public class AuthorController {
  
         authorService.removeAuthor(authorId);
  
+        return "redirect:/author";
+    }
+
+    @RequestMapping(value="/import", method = RequestMethod.GET)
+    public String importAuthorForm(Model model) {
+
+        model.addAttribute("authorFile", new FileUpload());
+        return "author.import";
+    }
+
+    @RequestMapping(value = "/import", method = RequestMethod.POST)
+    public String processUploadedFile(@ModelAttribute("authorFile") FileUpload uploadedFile, BindingResult result) {
+        if (result.hasErrors()) {
+            return "author.import";
+        }
+
+        // TODO: parse and import to DB
+
         return "redirect:/author";
     }
 }
