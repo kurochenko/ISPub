@@ -3,8 +3,7 @@ package net.kurochenko.ispub.upload;
 import au.com.bytecode.opencsv.CSVReader;
 import net.kurochenko.ispub.author.form.Author;
 
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,14 +16,15 @@ import java.util.List;
 public class AuthorParserCSV implements AuthorParser {
 
     @Override
-    public Collection<Author> parse(String file) throws IOException {
-        if (file == null) {
-            throw new IllegalArgumentException("File is null");
+    public Collection<Author> parse(InputStream fileIS) throws IOException {
+        if (fileIS == null) {
+            throw new IllegalArgumentException("Input Stream is null");
         }
 
         List<Author> authors = new ArrayList<Author>();
 
-        CSVReader reader = new CSVReader(new FileReader(file), ',', '"');
+
+        CSVReader reader = new CSVReader(new InputStreamReader(fileIS, "UTF-8"), ',', '"');
 
         String [] line;
         Author author = null;
@@ -36,7 +36,6 @@ public class AuthorParserCSV implements AuthorParser {
 
             authors.add(author);
         }
-
 
         return authors;
     }

@@ -3,6 +3,7 @@ package net.kurochenko.ispub.upload;
 import net.kurochenko.ispub.author.form.Author;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 
 /**
@@ -12,6 +13,6 @@ import java.util.Collection;
  */
 public interface AuthorParser {
 
-    public Collection<Author> parse(String file) throws IOException;
+    public Collection<Author> parse(InputStream file) throws IOException;
 
 }
