@@ -1,10 +1,12 @@
 package net.kurochenko.ispub.author.controller;
 
+import java.io.IOException;
 import java.util.Map;
 import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.author.service.AuthorService;
 import net.kurochenko.ispub.department.service.DepartmentService;
 import net.kurochenko.ispub.source.service.SourceService;
+import net.kurochenko.ispub.upload.AuthorParserCSV;
 import net.kurochenko.ispub.upload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,17 +90,26 @@ public class AuthorController {
     @RequestMapping(value="/import", method = RequestMethod.GET)
     public String importAuthorForm(Model model) {
 
-        model.addAttribute("authorFile", new FileUpload());
+        model.addAttribute(new FileUpload());
         return "author.import";
     }
 
     @RequestMapping(value = "/import", method = RequestMethod.POST)
-    public String processUploadedFile(@ModelAttribute("authorFile") FileUpload uploadedFile, BindingResult result) {
+    public String processUploadedFile(@ModelAttribute FileUpload fileUpload, BindingResult result) throws IOException {
         if (result.hasErrors()) {
             return "author.import";
         }
+        if (fileUpload == null) {
+            throw new IllegalArgumentException("Author file is null");
+        }
 
-        // TODO: parse and import to DB
+        if (fileUpload.getCsvFile() == null) {
+            throw new IllegalArgumentException("Authors CSV file is null");
+        }
+
+        for (Author author : AuthorParserCSV.parse(fileUpload.getCsvFile().getInputStream())) {
+            authorService.saveAuthor(author);
+        }
 
         return "redirect:/author";
     }

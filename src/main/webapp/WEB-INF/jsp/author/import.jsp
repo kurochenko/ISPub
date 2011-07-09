@@ -10,7 +10,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<form:form method="post" action="${pageContext.request.contextPath}/author/import" enctype="multipart/form-data" modelAttribute="authorFile">
+<form:form method="post" action="${pageContext.request.contextPath}/author/import" enctype="multipart/form-data" modelAttribute="fileUpload">
     <table class="noBorder">
     <tr>
         <th>
