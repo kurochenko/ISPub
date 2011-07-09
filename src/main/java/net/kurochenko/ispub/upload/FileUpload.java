@@ -8,16 +8,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
  * Time: 9:56 PM
  */
 public class FileUpload {
-    private String name;
     private CommonsMultipartFile csvFile;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public CommonsMultipartFile getCsvFile() {
         return csvFile;
