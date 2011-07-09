@@ -18,6 +18,11 @@
         <put-attribute name="title" value="Přidat nového autora" />
         <put-attribute name="body" value="/WEB-INF/jsp/author/save.jsp" />
     </definition>
+
+    <definition name="author.import" extends="base.definition">
+        <put-attribute name="title" value="Import autorů" />
+        <put-attribute name="body" value="/WEB-INF/jsp/author/import.jsp" />
+    </definition>
     
     <definition name="department" extends="base.definition">
         <put-attribute name="title" value="Oddělení" />
