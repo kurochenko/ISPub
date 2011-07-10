@@ -5,6 +5,7 @@ import java.util.Map;
 import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.author.service.AuthorService;
 import net.kurochenko.ispub.department.service.DepartmentService;
+import net.kurochenko.ispub.source.form.Source;
 import net.kurochenko.ispub.source.service.SourceService;
 import net.kurochenko.ispub.upload.AuthorParserCSV;
 import net.kurochenko.ispub.upload.FileUpload;
@@ -47,7 +48,7 @@ public class AuthorController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String addContact(@ModelAttribute("author")
     Author author, BindingResult result) {
- 
+
         authorService.saveAuthor(author);
  
         return "redirect:/author";
@@ -90,12 +91,12 @@ public class AuthorController {
     @RequestMapping(value="/import", method = RequestMethod.GET)
     public String importAuthorForm(Model model) {
 
-        model.addAttribute(new FileUpload());
+        model.addAttribute("fileUpload", new FileUpload());
         return "author.import";
     }
 
     @RequestMapping(value = "/import", method = RequestMethod.POST)
-    public String processUploadedFile(@ModelAttribute FileUpload fileUpload, BindingResult result) throws IOException {
+    public String processUploadedFile(@ModelAttribute("fileUpload") FileUpload fileUpload, BindingResult result, SessionStatus status) throws IOException {
         if (result.hasErrors()) {
             return "author.import";
         }
@@ -108,6 +109,13 @@ public class AuthorController {
         }
 
         for (Author author : AuthorParserCSV.parse(fileUpload.getCsvFile().getInputStream())) {
+
+            if (author.getDepartment() != null) {
+                departmentService.trySave(author.getDepartment());
+            }
+            for (Source src : author.getSources()) {
+                sourceService.saveSource(src);
+            }
             authorService.saveAuthor(author);
         }
 
