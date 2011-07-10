@@ -26,6 +26,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public void trySave(Department department) {
+        departmentDAO.trySave(department);
+    }
+
+    @Override
     public List<Department> listDepartment() {
         return departmentDAO.listDepartment();
     }

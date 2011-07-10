@@ -27,6 +27,19 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
+    public void trySave(Department department) {
+
+        Department dep;
+
+        if (department == null || ((dep = getByName(department.getName())) == null)) {
+            saveDepartment(department);
+        } else {
+            department = dep;
+        }
+
+    }
+
+    @Override
     public List<Department> listDepartment() {
         return sessionFactory.getCurrentSession().createQuery("from " + Department.class.getName()).list();
     }

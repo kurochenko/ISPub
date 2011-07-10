@@ -16,6 +16,7 @@ public interface DepartmentService {
      * @param department 
      */
     public void saveDepartment(Department department);
+    public void trySave(Department department);
     
     /**
      * Returns all departments
