@@ -28,6 +28,12 @@ public class Source implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "sources")
     Set<Author> authors;
 
+    public Source() {}
+
+    public Source(String name) {
+        this.name = name;
+    }
+
     public Integer getSourceId() {
         return sourceId;
     }
