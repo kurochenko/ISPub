@@ -27,7 +27,14 @@ public class SourceDAOImpl implements SourceDAO {
 
     @Override
     public void saveSource(Source source) {
-        sessionFactory.getCurrentSession().saveOrUpdate(source);
+//        sessionFactory.getCurrentSession().saveOrUpdate(source);
+        Source src = getByName(source.getName());
+        if (src == null) {
+            sessionFactory.getCurrentSession().saveOrUpdate(source);
+        } else {
+            source.setSourceId(src.getSourceId());
+        }
+
     }
 
     @Override
