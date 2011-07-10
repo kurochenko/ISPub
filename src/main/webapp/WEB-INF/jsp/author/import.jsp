@@ -10,7 +10,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<form:form method="post" action="${pageContext.request.contextPath}/author/import" enctype="multipart/form-data" modelAttribute="fileUpload">
+<form:form method="post" action="${pageContext.request.contextPath}/author/import"
+           enctype="multipart/form-data" modelAttribute="fileUpload">
     <table class="noBorder">
     <tr>
         <th>
@@ -19,7 +20,7 @@
             </form:label>
         </th>
         <td>
-            <input path="csvFile" type="file" /><form:errors path="csvFile" />
+            <form:input path="csvFile" type="file" /><form:errors path="csvFile" />
         </td>
         <td>
             <input type="submit" value="<spring:message code="label.author.import.submit"/>"/>
