@@ -39,6 +39,12 @@ public class Department implements Serializable {
     )
     private Set<Author> authors;
 
+    public Department() {}
+
+    public Department(String name) {
+        this.name = name;
+    }
+
     public Integer getIddepartment() {
         return iddepartment;
     }
