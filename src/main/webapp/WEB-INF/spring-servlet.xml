@@ -22,44 +22,44 @@
         <property name="maxUploadSize" value="1000000"/>
     </bean>
 
-    
+
 <!--  L10n, i18n  -->
-    
+
     <bean id="messageSource"
     class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:messages" />
         <property name="defaultEncoding" value="UTF-8"/>
     </bean>
- 
+
     <bean id="localeChangeInterceptor"
     class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="lang" />
     </bean>
- 
+
     <bean id="localeResolver"
     class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="cz"/>
     </bean>
- 
+
     <bean id="handlerMapping"
     class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="interceptors">
             <ref bean="localeChangeInterceptor" />
         </property>
     </bean>
-    
+
 <!-- hibernate -->
 
     <bean id="propertyConfigurer"
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
         p:location="/WEB-INF/jdbc.properties" />
- 
+
     <bean id="dataSource"
         class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
         p:driverClassName="${jdbc.driverClassName}"
         p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
         p:password="${jdbc.password}" />
- 
+
     <bean id="sessionFactory"
         class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
@@ -77,17 +77,17 @@
             </props>
         </property>
     </bean>
- 
+
     <tx:annotation-driven />
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    
+
     <mvc:annotation-driven conversion-service="formattingFactory" />
 
-          
+
     <bean id="viewResolver"
     class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass">
@@ -104,5 +104,5 @@
             </list>
         </property>
     </bean>
-    
+
 </beans>
