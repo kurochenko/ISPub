@@ -9,12 +9,12 @@ import net.kurochenko.ispub.source.form.Source;
 import net.kurochenko.ispub.source.service.SourceService;
 import net.kurochenko.ispub.upload.AuthorParserCSV;
 import net.kurochenko.ispub.upload.FileUpload;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
@@ -26,6 +26,8 @@ import org.springframework.web.context.request.WebRequest;
 @Controller
 @RequestMapping("/author")
 public class AuthorController {
+
+    private static Logger log = Logger.getLogger(AuthorController.class);
     
     @Autowired
     private AuthorService authorService;
@@ -108,16 +110,26 @@ public class AuthorController {
             throw new IllegalArgumentException("Authors CSV file is null");
         }
 
+        log.info("Starting to insert authors");
         for (Author author : AuthorParserCSV.parse(fileUpload.getCsvFile().getInputStream())) {
 
+            log.info("Trying to insert department " + author.getDepartment());
             if (author.getDepartment() != null) {
                 departmentService.trySave(author.getDepartment());
             }
+            log.info("Finished trying to insert department " + author.getDepartment());
+
             for (Source src : author.getSources()) {
+                log.info("Trying to insert source " + src);
                 sourceService.saveSource(src);
+                log.info("Finished trying to insert source " + src);
             }
+
+            log.info("Starting to insert author " + author.getName() + " " + author.getSurname());
             authorService.saveAuthor(author);
+            log.info("FINISHED");
         }
+        log.info("Finished to insert authors");
 
         return "redirect:/author";
     }
