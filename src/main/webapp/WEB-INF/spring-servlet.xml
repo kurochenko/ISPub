@@ -50,7 +50,7 @@
 
 <!-- hibernate -->
 
-    <bean id="propertyConfigurer"
+<!--    <bean id="propertyConfigurer"
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
         p:location="/WEB-INF/jdbc.properties" />
 
@@ -82,7 +82,7 @@
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
+    </bean>-->
 
 
     <mvc:annotation-driven conversion-service="formattingFactory" />
