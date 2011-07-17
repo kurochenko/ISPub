@@ -29,12 +29,12 @@
     <tr class="${rowClass}">
         <td>${source.name} </td>
         <td class="action">
-            <a href="source/save/${department.iddepartment}" class="update">
+            <a href="source/save/${source.sourceId}" class="update">
                 <img src='${imgPath}/system/blank.png' alt='<spring:message code="label.update"/>' title='<spring:message code="label.update"/>' class='update'/>
             </a>
         </td>
         <td class="action">
-            <a href="source/delete/${department.iddepartment}" class="remove">
+            <a href="source/delete/${source.sourceId}" class="remove">
                 <img src='${imgPath}/system/blank.png' alt='<spring:message code="label.delete"/>' title='<spring:message code="label.delete"/>' class='remove'/>
             </a>
         </td>
