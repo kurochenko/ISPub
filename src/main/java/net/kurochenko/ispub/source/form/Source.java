@@ -2,10 +2,11 @@ package net.kurochenko.ispub.source.form;
 
 import net.kurochenko.ispub.author.form.Author;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
+import org.hibernate.annotations.Cascade;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,8 +26,11 @@ public class Source implements Serializable {
     @Column(name = "name",unique = true)
     String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "sources")
-    Set<Author> authors;
+    @ManyToMany(mappedBy = "sources")
+            @JoinTable(name = "author_source",
+        joinColumns = { @JoinColumn(name = "source")},
+        inverseJoinColumns = { @JoinColumn(name = "author")})
+    Set<Author> authors = new HashSet<Author>();
 
     public Source() {}
 
@@ -56,6 +60,16 @@ public class Source implements Serializable {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+    
+    public void addAuthor(Author author) {
+        this.authors.add(author);
+        author.getSources().add(this);
+    }
+    
+    public void removeAuthor(Author author) {
+        this.authors.remove(author);
+        author.getSources().remove(this);
     }
 
     @Override

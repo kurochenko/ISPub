@@ -1,6 +1,7 @@
 package net.kurochenko.ispub.author.form;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -42,13 +43,11 @@ public class Author implements Serializable {
     private Department department;
 
     @SourceFormat
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(
-            name = "author_source",
-            joinColumns = {@JoinColumn(name = "author") },
-			inverseJoinColumns = { @JoinColumn(name = "source") }
-    )
-    private Set<Source> sources;
+    @ManyToMany(fetch= FetchType.EAGER)
+    @JoinTable(name = "author_source",
+        joinColumns = { @JoinColumn(name = "author")},
+        inverseJoinColumns = { @JoinColumn(name = "source")})
+    private Set<Source> sources = new HashSet<Source>();
 
     public Department getDepartment() {
         return department;
@@ -104,6 +103,16 @@ public class Author implements Serializable {
 
     public void setSources(Set<Source> sources) {
         this.sources = sources;
+    }
+    
+    public void addSource(Source source) {
+        this.sources.add(source);
+        source.getAuthors().add(this);
+    }
+    
+    public void removeSource(Source source) {
+        this.sources.remove(source);
+        source.getAuthors().remove(this);
     }
 
     @Override
