@@ -41,9 +41,9 @@ public class SourceDAOImpl implements SourceDAO {
     public void removeSource(Integer id) {
         Source source = getByID(id);
         if (source != null) {
-            for (Author author : source.getAuthors()) {
-                author.getSources().clear();
-            }
+//            for (Author author : source.getAuthors()) {
+//                author.getSources().clear();
+//            }
             sessionFactory.getCurrentSession().delete(source);
         }
     }
