@@ -3,6 +3,7 @@ package net.kurochenko.ispub.source.dao;
 import net.kurochenko.ispub.source.form.Source;
 
 import java.util.List;
+import net.kurochenko.ispub.author.form.Author;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,11 +13,13 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface SourceDAO {
-    public void saveSource(Source source);
+    public void insert(Source source);
 
-    public void removeSource(Integer id);
+    public void remove(Long sourceID);
 
-    public Source getByID(Integer id);
+    public Source getByID(Long sourceID);
+    
+    public List<Source> getByAuthor(Author author);
 
     public Source getByName(String name);
 

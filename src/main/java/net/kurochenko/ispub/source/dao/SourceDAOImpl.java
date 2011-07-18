@@ -18,28 +18,28 @@ import java.util.List;
  * Time: 1:42 PM
  * To change this template use File | Settings | File Templates.
  */
-@Repository
-@Transactional
+//@Repository
+//@Transactional
 public class SourceDAOImpl implements SourceDAO {
 
     @Autowired
     SessionFactory sessionFactory;
 
     @Override
-    public void saveSource(Source source) {
+    public void insert(Source source) {
 //        sessionFactory.getCurrentSession().saveOrUpdate(source);
         Source src = getByName(source.getName());
         if (src == null) {
             sessionFactory.getCurrentSession().saveOrUpdate(source);
         } else {
-            source.setSourceId(src.getSourceId());
+            source.setID(src.getID());
         }
 
     }
 
     @Override
-    public void removeSource(Integer id) {
-        Source source = getByID(id);
+    public void remove(Long sourceID) {
+        Source source = getByID(null);
         if (source != null) {
 //            for (Author author : source.getAuthors()) {
 //                author.getSources().clear();
@@ -49,8 +49,8 @@ public class SourceDAOImpl implements SourceDAO {
     }
 
     @Override
-    public Source getByID(Integer id) {
-        return (Source) sessionFactory.getCurrentSession().get(Source.class, id);
+    public Source getByID(Long sourceID) {
+        return (Source) sessionFactory.getCurrentSession().get(Source.class, sourceID);
     }
 
     @Override
@@ -65,5 +65,10 @@ public class SourceDAOImpl implements SourceDAO {
     @Override
     public List<Source> list() {
         return (List<Source>) sessionFactory.getCurrentSession().createQuery("from " + Source.class.getName()).list();
+    }
+
+    @Override
+    public List<Source> getByAuthor(Author author) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

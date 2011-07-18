@@ -15,7 +15,7 @@ public interface DepartmentService {
      * 
      * @param department 
      */
-    public void saveDepartment(Department department);
+    public void insert(Department department);
     public void trySave(Department department);
     
     /**
@@ -23,14 +23,14 @@ public interface DepartmentService {
      * 
      * @return 
      */
-    public List<Department> listDepartment();
+    public List<Department> list();
     
     /**
      * Removes department with specified ID if such department exists
      * 
      * @param id 
      */
-    public void removeDepartment(Integer id);    
+    public void remove(Long id);    
     
     /**
      * Searches and returns department with given ID
@@ -38,7 +38,7 @@ public interface DepartmentService {
      * @param id
      * @return department from 
      */
-    public Department getDepartmentByID(Integer id);
+    public Department getByID(Long id);
     
     /**
      * Searches and returns department with given name

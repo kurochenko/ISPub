@@ -25,17 +25,17 @@ public class SourceServiceImpl implements SourceService {
 
     @Override
     public void saveSource(Source source) {
-        sourceDAO.saveSource(source);
+        sourceDAO.insert(source);
     }
 
     @Override
     public void removeSource(Integer id) {
-        sourceDAO.removeSource(id);
+        sourceDAO.remove(null);
     }
 
     @Override
     public Source getByID(Integer id) {
-        return sourceDAO.getByID(id);
+        return sourceDAO.getByID(null);
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.author.service.AuthorService;
+import net.kurochenko.ispub.department.form.Department;
 import net.kurochenko.ispub.department.service.DepartmentService;
 import net.kurochenko.ispub.source.form.Source;
 import net.kurochenko.ispub.source.service.SourceService;
@@ -59,7 +60,7 @@ public class AuthorController {
     @RequestMapping(value = "/save", method= RequestMethod.GET)
     public String renderContact(Model model, @ModelAttribute Author author, WebRequest request) {
  
-        model.addAttribute("departmentList", departmentService.listDepartment());
+        model.addAttribute("departmentList", departmentService.list());
         model.addAttribute("sourceList", sourceService.list());
         
         return "author.save";
@@ -69,7 +70,7 @@ public class AuthorController {
     public String renderUpdateForm(@PathVariable("authorId") Integer authorId, ModelMap model) {
         model.addAttribute("author", authorService.getAuthorByID(authorId));
         
-        model.addAttribute("departmentList", departmentService.listDepartment());
+        model.addAttribute("departmentList", departmentService.list());
         model.addAttribute("sourceList", sourceService.list());
         return "author.save";
     }
@@ -113,16 +114,20 @@ public class AuthorController {
         log.info("Starting to insert authors");
         for (Author author : AuthorParserCSV.parse(fileUpload.getCsvFile().getInputStream())) {
 
-            log.info("Trying to insert department " + author.getDepartment());
-            if (author.getDepartment() != null) {
-                departmentService.trySave(author.getDepartment());
+            if (author.getDepartments() != null)  {
+                for (Department dep : author.getDepartments()) {
+                    log.info("Trying to insert department " + dep);
+                    departmentService.insert(dep);
+                    log.info("Finished trying to insert department " + dep);
+                }
             }
-            log.info("Finished trying to insert department " + author.getDepartment());
 
-            for (Source src : author.getSources()) {
-                log.info("Trying to insert source " + src);
-                sourceService.saveSource(src);
-                log.info("Finished trying to insert source " + src);
+            if (author.getSources() != null)  {
+                for (Source src : author.getSources()) {
+                    log.info("Trying to insert source " + src);
+                    sourceService.saveSource(src);
+                    log.info("Finished trying to insert source " + src);
+                }
             }
 
             log.info("Starting to insert author " + author.getName() + " " + author.getSurname());

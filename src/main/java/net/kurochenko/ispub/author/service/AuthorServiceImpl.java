@@ -20,26 +20,26 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public void saveAuthor(Author author) {
-        authorDAO.saveAuthor(author);
+        authorDAO.insert(author);
     }
 
     @Override
     public void removeAuthor(Integer idAuthor) {
-        authorDAO.removeAuthor(idAuthor);
+        authorDAO.remove(idAuthor);
     }
 
     @Override
     public Author getAuthorByID(Integer idAuthor) {
-        return authorDAO.getAuthorByID(idAuthor);
+        return authorDAO.getByID(idAuthor);
     }
 
     @Override
     public List<Author> listAuthor() {
-        return authorDAO.listAuthor();
+        return authorDAO.list();
     }
 
     @Override
     public void updateAuthor(Author author) {
-        authorDAO.updateAuthor(author);
+        authorDAO.update(author);
     }
 }

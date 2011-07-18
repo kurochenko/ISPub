@@ -43,7 +43,9 @@ public class AuthorParserCSV {
 
             department = getValue(line, AuthorCSVColumnNumbers.DEPARTMENT.getColumnNumber());
             if (department != null) {
-                author.setDepartment(new Department(department));
+                List<Department> departments = new ArrayList<Department>();
+                departments.add(new Department(department));
+                author.setDepartments(departments);
             }
 
             sourceNames = getValues(line, AuthorCSVColumnNumbers.SOURCES.getColumnNumbers());

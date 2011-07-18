@@ -4,9 +4,8 @@ import net.kurochenko.ispub.author.form.Author;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import org.hibernate.annotations.Cascade;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,16 +20,16 @@ public class Source implements Serializable {
     @Id
     @Column(name = "sourceId")
     @GeneratedValue
-    Integer sourceId;
+    private Long id;
 
     @Column(name = "name",unique = true)
-    String name;
+    private String name;
 
     @ManyToMany(mappedBy = "sources")
             @JoinTable(name = "author_source",
         joinColumns = { @JoinColumn(name = "source")},
         inverseJoinColumns = { @JoinColumn(name = "author")})
-    Set<Author> authors = new HashSet<Author>();
+    private List<Author> authors = new ArrayList<Author>();
 
     public Source() {}
 
@@ -38,12 +37,12 @@ public class Source implements Serializable {
         this.name = name;
     }
 
-    public Integer getSourceId() {
-        return sourceId;
+    public Long getID() {
+        return id;
     }
 
-    public void setSourceId(Integer sourceId) {
-        this.sourceId = sourceId;
+    public void setID(Long sourceId) {
+        this.id = sourceId;
     }
 
     public String getName() {
@@ -54,11 +53,11 @@ public class Source implements Serializable {
         this.name = name;
     }
 
-    public Set<Author> getAuthors() {
+    public List<Author> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(Set<Author> authors) {
+    public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
     
@@ -80,14 +79,14 @@ public class Source implements Serializable {
         Source source = (Source) o;
 
         if (name != null ? !name.equals(source.name) : source.name != null) return false;
-        if (sourceId != null ? !sourceId.equals(source.sourceId) : source.sourceId != null) return false;
+        if (id != null ? !id.equals(source.id) : source.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = sourceId != null ? sourceId.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

@@ -14,15 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Andrej Kuročenko <kurochenko@mail.muni.cz>
  */
-@Repository
-@Transactional
+//@Repository
+//@Transactional
 public class DepartmentDAOImpl implements DepartmentDAO {
     
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public void saveDepartment(Department department) {
+    public void save(Department department) {
         sessionFactory.getCurrentSession().saveOrUpdate(department);
     }
 
@@ -32,7 +32,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         Department dep;
 
         if (department == null || ((dep = getByName(department.getName())) == null)) {
-            saveDepartment(department);
+            save(department);
         } else {
             department = dep;
         }
@@ -40,26 +40,26 @@ public class DepartmentDAOImpl implements DepartmentDAO {
     }
 
     @Override
-    public List<Department> listDepartment() {
+    public List<Department> list() {
         return sessionFactory.getCurrentSession().createQuery("from " + Department.class.getName()).list();
     }
 
     @Override
-    public void removeDepartment(Integer id) {
+    public void remove(Long id) {
 
         Query query = sessionFactory.getCurrentSession().createQuery("update " + Author.class.getName()
                 + " set department = null where department = ?");
-        query.setInteger(0, id);
+        query.setLong(0, id);
         query.executeUpdate();
 
-        Department department = getDepartmentByID(id);
+        Department department = getByID(id);
         if (null != department) {
             sessionFactory.getCurrentSession().delete(department);
         }
     }
 
     @Override
-    public Department getDepartmentByID(Integer id) {
+    public Department getByID(Long id) {
         return (Department) sessionFactory.getCurrentSession().get(Department.class, id);
     }
 
@@ -71,6 +71,11 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         query.setString(0, name);
 
         return (Department) query.uniqueResult();
+    }
+
+    @Override
+    public List<Department> getByAuthor(Author author) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

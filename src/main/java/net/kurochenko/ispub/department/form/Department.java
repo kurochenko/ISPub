@@ -5,11 +5,9 @@ import net.kurochenko.ispub.author.form.Author;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.*;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -24,7 +22,7 @@ public class Department implements Serializable {
     @Id
     @Column(name="iddepartment")
     @GeneratedValue
-    private Integer iddepartment;
+    private Long id;
     
     @Column(name="name", unique=true)
     @NotNull
@@ -32,11 +30,7 @@ public class Department implements Serializable {
     @Max(255)
     private String name;
 
-    @OneToMany(
-            mappedBy = "department",
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH},
-            fetch = FetchType.EAGER
-    )
+    @ManyToMany(mappedBy = "departments")
     private Set<Author> authors;
 
     public Department() {}
@@ -45,12 +39,12 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public Integer getIddepartment() {
-        return iddepartment;
+    public Long getID() {
+        return id;
     }
 
-    public void setIddepartment(Integer iddepartment) {
-        this.iddepartment = iddepartment;
+    public void setID(Long iddepartment) {
+        this.id = iddepartment;
     }
 
     public String getName() {
@@ -78,7 +72,7 @@ public class Department implements Serializable {
             return false;
         }
         final Department other = (Department) obj;
-        if (this.iddepartment != other.iddepartment && (this.iddepartment == null || !this.iddepartment.equals(other.iddepartment))) {
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
         if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
@@ -90,7 +84,7 @@ public class Department implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 11 * hash + (this.iddepartment != null ? this.iddepartment.hashCode() : 0);
+        hash = 11 * hash + (this.id != null ? this.id.hashCode() : 0);
         hash = 11 * hash + (this.name != null ? this.name.hashCode() : 0);
         return hash;
     }

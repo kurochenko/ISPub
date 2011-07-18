@@ -4,8 +4,6 @@ import java.util.List;
 import net.kurochenko.ispub.department.dao.DepartmentDAO;
 import net.kurochenko.ispub.department.form.Department;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +19,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentDAO departmentDAO;
 
     @Override
-    public void saveDepartment(Department department) {
-        departmentDAO.saveDepartment(department);
+    public void insert(Department department) {
+        departmentDAO.save(department);
     }
 
     @Override
@@ -31,18 +29,18 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Department> listDepartment() {
-        return departmentDAO.listDepartment();
+    public List<Department> list() {
+        return departmentDAO.list();
     }
 
     @Override
-    public void removeDepartment(Integer id) {
-        departmentDAO.removeDepartment(id);
+    public void remove(Long id) {
+        departmentDAO.remove(id);
     }
 
     @Override
-    public Department getDepartmentByID(Integer id) {
-        return departmentDAO.getDepartmentByID(id);
+    public Department getByID(Long id) {
+        return departmentDAO.getByID(id);
     }
 
     @Override

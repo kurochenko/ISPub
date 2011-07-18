@@ -27,7 +27,7 @@ public class DepartmentController {
     public String listContacts(Map<String, Object> map) {
  
         map.put("department", new Department());
-        map.put("departmentList", departmentService.listDepartment());
+        map.put("departmentList", departmentService.list());
  
         return "department";
     }
@@ -39,7 +39,7 @@ public class DepartmentController {
             return "department.save";
         }
         
-        departmentService.saveDepartment(department);
+        departmentService.insert(department);
  
         return "redirect:/department";
     }
@@ -51,8 +51,8 @@ public class DepartmentController {
     }
 
     @RequestMapping(value="/save/{departmentId}", method = RequestMethod.GET)
-    public String setupForm(@PathVariable("departmentId") Integer departmentId, ModelMap model) {
-        model.addAttribute("department", departmentService.getDepartmentByID(departmentId));
+    public String setupForm(@PathVariable("departmentId") Long departmentId, ModelMap model) {
+        model.addAttribute("department", departmentService.getByID(departmentId));
         
         return "department.save";
     }
@@ -64,16 +64,16 @@ public class DepartmentController {
             return "department.save";
         }
         
-        departmentService.saveDepartment(department);
+        departmentService.insert(department);
         status.setComplete();
         return "redirect:/department";
     }
     
     @RequestMapping("/delete/{departmentId}")
     public String deleteContact(@PathVariable("departmentId")
-    Integer departmentId) {
+    Long departmentId) {
  
-        departmentService.removeDepartment(departmentId);
+        departmentService.remove(departmentId);
  
         return "redirect:/department";
     }

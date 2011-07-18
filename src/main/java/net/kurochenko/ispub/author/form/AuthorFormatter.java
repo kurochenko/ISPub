@@ -23,7 +23,7 @@ public class AuthorFormatter implements Formatter<Author> {
         return author.getName() + " " 
                 + author.getSurname() 
                 + " (" + author.getMeId() + ")" 
-                + " [" + author.getIdAuthor() + "]";
+                + " [" + author.getId() + "]";
     }
 
     @Override
