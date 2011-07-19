@@ -37,8 +37,12 @@
         <tr class="${rowClass}">
             <td>${author.name} </td>
             <td>${author.surname} </td>
-            <td>${author.department.name} </td>
             <td>${author.meId} </td>
+            <td>
+                <c:forEach items="${author.departments}" var="dep">
+                    ${dep}<br />
+                </c:forEach>
+            </td>
             <td>
                 <c:forEach items="${author.sources}" var="src">
                     ${src}<br />
@@ -46,12 +50,12 @@
             </td>
             <td>${author.note} </td>
             <td class='action'>
-                <a href="author/save/${author.idAuthor}" class="update">
+                <a href="author/save/${author.id}" class="update">
                     <img src='${imgPath}/system/blank.png' alt='<spring:message code="label.update"/>' title='<spring:message code="label.update"/>' class='update'/>
                 </a>
             </td>
             <td class='action'>
-                <a href="author/delete/${author.idAuthor}" class="remove">
+                <a href="author/delete/${author.id}" class="remove">
                     <img src='${imgPath}/system/blank.png' alt='<spring:message code="label.delete"/>' title='<spring:message code="label.delete"/>' class='remove'/>
                 </a>
             </td>
