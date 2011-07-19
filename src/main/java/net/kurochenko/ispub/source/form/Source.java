@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "source")
 public class Source implements Serializable {
     @Id
-    @Column(name = "sourceId")
+    @Column(name = "id")
     @GeneratedValue
     private Long id;
 
@@ -37,11 +37,11 @@ public class Source implements Serializable {
         this.name = name;
     }
 
-    public Long getID() {
+    public Long getId() {
         return id;
     }
 
-    public void setID(Long sourceId) {
+    public void setId(Long sourceId) {
         this.id = sourceId;
     }
 

@@ -32,7 +32,7 @@ public class SourceDAOImpl implements SourceDAO {
         if (src == null) {
             sessionFactory.getCurrentSession().saveOrUpdate(source);
         } else {
-            source.setID(src.getID());
+            source.setId(src.getId());
         }
 
     }

@@ -51,7 +51,7 @@ public class SourceDAOJdbc implements SourceDAO {
            
 
             int count = st.executeUpdate();
-            source.setID(DBUtils.getId(st.getGeneratedKeys()));
+            source.setId(DBUtils.getId(st.getGeneratedKeys()));
             assert count == 1;
         } catch (SQLException ex) {
             logger.log(Level.ERROR, "Failed to add source", ex);
@@ -196,7 +196,7 @@ public class SourceDAOJdbc implements SourceDAO {
             throw new IllegalArgumentException("ResultSet is null");
         }
         Source result = new Source();
-        result.setID(rs.getLong("idsource"));
+        result.setId(rs.getLong("idsource"));
         result.setName(rs.getString("source"));
         return result;
     }    
