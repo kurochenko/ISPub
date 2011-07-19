@@ -20,11 +20,11 @@ import net.kurochenko.ispub.source.form.SourceFormat;
 public class Author implements Serializable {
 
     @Id
-    @Column(name = "idauthor")
+    @Column(name = "id")
     @GeneratedValue
     private Long id;
     
-    @Column(name = "me_id")
+    @Column(name = "meid")
     private String meId;
 
     @Column(name = "name")

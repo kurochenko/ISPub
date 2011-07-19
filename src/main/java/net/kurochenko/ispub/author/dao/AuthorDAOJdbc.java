@@ -130,13 +130,13 @@ public class AuthorDAOJdbc implements AuthorDAO {
             st.executeUpdate();
             
             for (int i = 0; i < author.getSources().size(); i++) {
-                if (author.getSources().get(i).getID() == null) {
+                if (author.getSources().get(i).getId() == null) {
                     sourceDAO.insert(author.getSources().get(i));            
                 }
                 
                 st = conn.prepareStatement("INSERT INTO author_source (author, source) VALUES (?,?)");
                 st.setLong(1, author.getId());
-                st.setLong(2, author.getSources().get(i).getID());
+                st.setLong(2, author.getSources().get(i).getId());
                 
                 st.executeUpdate();
             }
