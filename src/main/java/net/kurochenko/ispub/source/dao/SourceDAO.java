@@ -24,4 +24,6 @@ public interface SourceDAO {
     public Source getByName(String name);
 
     public List<Source> list();
+
+    public void insertAuthorSources(Author author);
 }

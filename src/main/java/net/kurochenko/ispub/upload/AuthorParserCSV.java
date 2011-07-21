@@ -51,14 +51,12 @@ public class AuthorParserCSV {
             sourceNames = getValues(line, AuthorCSVColumnNumbers.SOURCES.getColumnNumbers());
 
             if (!sourceNames.isEmpty()) {
-//                Set<Source> sources = new HashSet<Source>();
+                List<Source> sources = new ArrayList<Source>();
 
                 for (int i = 0; i < sourceNames.size(); i++) {
-                    Source src = new Source(sourceNames.get(i)); 
-//                    sources.add();
-                    author.addSource(src);
+                    sources.add(new Source(sourceNames.get(i)));
                 }
-//                author.setSources(sources);
+                author.setSources(sources);
             }
 
             author.setNote(getValue(line, AuthorCSVColumnNumbers.NOTE.getColumnNumber()));

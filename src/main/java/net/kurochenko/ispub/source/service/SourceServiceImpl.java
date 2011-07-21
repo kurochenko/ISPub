@@ -1,5 +1,6 @@
 package net.kurochenko.ispub.source.service;
 
+import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.source.dao.SourceDAO;
 import net.kurochenko.ispub.source.form.Source;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ import java.util.List;
 @Service
 @Transactional
 public class SourceServiceImpl implements SourceService {
+    @Override
+    public void insertAuthorSources(Author author) {
+        sourceDAO.insertAuthorSources(author);
+    }
 
     @Autowired
     SourceDAO sourceDAO;

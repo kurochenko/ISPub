@@ -10,7 +10,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 
 <form:form method="post" action="${pageContext.request.contextPath}/author/save" modelAttribute="author">
-<form:hidden path="idAuthor" />
+<form:hidden path="id" />
  
     <table>
     <tr>
@@ -39,15 +39,12 @@
     </tr>
     <tr>
         <td>
-            <form:label path="department">
+            <form:label path="departments">
                 <spring:message code="label.author.department"/>
             </form:label>
         </td>
         <td>
-            <form:select path="department">
-                <form:option value="" label="---" />
-                <form:options items="${departmentList}" itemValue="name" itemLabel="name" />
-            </form:select>
+            <form:select path="departments" items="${departmentList}" multiple="true" />
         </td>
     </tr>
     <tr>
@@ -71,7 +68,7 @@
     <tr>
         <td colspan="2">
             <c:choose>
-                <c:when test="${empty author.idAuthor}">
+                <c:when test="${empty author.id}">
                     <input type="submit" value="<spring:message code="label.add"/>"/>
                 </c:when>
                 <c:otherwise>

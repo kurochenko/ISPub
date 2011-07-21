@@ -1,5 +1,6 @@
 package net.kurochenko.ispub.source.service;
 
+import net.kurochenko.ispub.author.form.Author;
 import net.kurochenko.ispub.source.form.Source;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface SourceService {
     public Source getByName(String name);
 
     public List<Source> list();
+
+    public void insertAuthorSources(Author author);
 }

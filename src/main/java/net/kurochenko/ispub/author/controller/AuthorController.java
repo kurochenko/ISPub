@@ -123,11 +123,11 @@ public class AuthorController {
             }
 
             if (author.getSources() != null)  {
-                for (Source src : author.getSources()) {
-                    log.info("Trying to insert source " + src);
-                    sourceService.saveSource(src);
-                    log.info("Finished trying to insert source " + src);
-                }
+//                for (Source src : author.getSources()) {
+//                    log.info("Trying to insert source " + src);
+                    sourceService.insertAuthorSources(author);
+//                    log.info("Finished trying to insert source " + src);
+//                }
             }
 
             log.info("Starting to insert author " + author.getName() + " " + author.getSurname());

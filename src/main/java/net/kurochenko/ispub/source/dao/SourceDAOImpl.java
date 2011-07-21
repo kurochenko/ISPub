@@ -68,6 +68,11 @@ public class SourceDAOImpl implements SourceDAO {
     }
 
     @Override
+    public void insertAuthorSources(Author author) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public List<Source> getByAuthor(Author author) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

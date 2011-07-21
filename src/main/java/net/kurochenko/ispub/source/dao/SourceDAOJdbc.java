@@ -48,6 +48,8 @@ public class SourceDAOJdbc implements SourceDAO {
                     Statement.RETURN_GENERATED_KEYS);
 
             st.setString(1, source.getName());
+
+
            
 
             int count = st.executeUpdate();
@@ -186,6 +188,76 @@ public class SourceDAOJdbc implements SourceDAO {
         } catch (SQLException ex) {
             logger.log(Level.ERROR, "Error when getting sources for author from DB",ex);
             throw new RuntimeException("Error when getting sources for author from DB",ex);
+        } finally {
+            DBUtils.closeConnection(conn);
+        }
+    }
+
+    public void insertAuthorSources(Author author) {
+        if (author == null) {
+            throw new IllegalArgumentException("Author is null");
+        }
+        if (author.getSources() == null) {
+            throw new IllegalArgumentException("Author sources are null");
+        }
+
+        for (int i = 0; i < author.getSources().size(); i++) {
+
+            Source source = getByName(author.getSources().get(i).getName());
+
+            if (source == null) {
+                insert(author.getSources().get(i));
+                source = author.getSources().get(i);
+            }
+            if (!authorSourceLinkExists(author, source)) {
+                createAuthorSourceLink(author, source);
+            }
+
+
+        }
+    }
+
+    private void createAuthorSourceLink(Author author, Source source) {
+        Connection conn = null;
+
+        try {
+            conn = ds.getConnection();
+            PreparedStatement st = conn.prepareStatement("INSERT INTO author_source (author, source) VALUES (?,?)",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            st.setLong(1, author.getId());
+            st.setLong(2, source.getId());
+
+
+            int count = st.executeUpdate();
+            assert count == 1;
+        } catch (SQLException ex) {
+            logger.log(Level.ERROR, "Failed to add source", ex);
+            throw new RuntimeException("Failed to add source", ex);
+        } finally {
+            DBUtils.closeConnection(conn);
+        }
+    }
+
+    private boolean authorSourceLinkExists(Author author, Source source) {
+        Connection conn = null;
+
+        try {
+            conn = ds.getConnection();
+            PreparedStatement st = conn.prepareStatement("SELECT * FROM author_source WHERE author=? AND source=?");
+            st.setLong(1, author.getId());
+            st.setLong(2, source.getId());
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                assert !rs.next();
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            logger.log(Level.ERROR, "Error when checking author source link in DB",ex);
+            throw new RuntimeException("Error when checking author source link in DB",ex);
         } finally {
             DBUtils.closeConnection(conn);
         }
